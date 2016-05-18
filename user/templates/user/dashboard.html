@@ -1,0 +1,11 @@
+{% include "user/header.html" %}
+{% include "user/sidemenu.html" %}
+<div class="content-wrapper">
+    <div class="content" id="content_div">
+    	{% include "student/attendance.html" %}
+    </div>
+</div>
+<div id="csrf_token">
+	{% csrf_token %}
+</div>
+{% include "user/footer.html" %}
