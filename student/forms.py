@@ -39,6 +39,7 @@ class batch_form(forms.ModelForm):
                 fields = ['batch_std', 'batch_board']
         helper = FormHelper()
         helper.form_method = 'POST'
+        helper.form_action = 'student/batch/'
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'
@@ -56,6 +57,7 @@ class standard_form(forms.ModelForm):
                 fields = ['standard']
         helper = FormHelper()
         helper.form_method = 'POST'
+        helper.form_action = 'student/standard/'
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'
@@ -72,6 +74,7 @@ class board_form(forms.ModelForm):
                 fields = ['board']
         helper = FormHelper()
         helper.form_method = 'POST'
+        helper.form_action = 'student/board/'
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'
