@@ -7,6 +7,7 @@ from crispy_forms.bootstrap import (
 
 from .models import student_info, batch, board, standard
 # Demo Links for using cripsy forms : http://goo.gl/TmPCJb https://godjango.com/29-crispy-forms/
+
 class student_info_form(forms.ModelForm):
 
         class Meta:
@@ -15,6 +16,7 @@ class student_info_form(forms.ModelForm):
 				'sms_mob', 'school', 'total_fees']
         helper = FormHelper()
         helper.form_method = 'POST'
+        helper.form_action = 'student/student/'
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'

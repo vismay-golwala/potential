@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import student_info_form, batch_form, standard_form, board_form
-from .models import student_info
+from .models import student_info, batch
 from django.views.generic import View
 from django.http import HttpResponse
 
@@ -8,8 +8,16 @@ from django.http import HttpResponse
 def dashboard(request):
     return render(request, 'student/dashboard.html')
 
-def attendance(request):
-    return render(request, 'student/attendance.html')
+class attendance(View):
+	template_name = 'student/attendance.html'	
+	
+	def get(self, request):
+                batches = batch.objects.all()
+                return render(request, self.template_name, {"batch_all":batches})
+	
+	def post(self,request):
+            pass
+            
 
 class student_info_form_view(View):
 	form_class = student_info_form
