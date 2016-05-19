@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-	$(document).on("click","#get_attendance",function()
+	$(document).on("change","#standard",function()
 	{
 		var standard = $("#standard").val();
 		var csrf_token = $("#csrf_token").find("input").val();

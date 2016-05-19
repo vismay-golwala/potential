@@ -33,7 +33,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 INSTALLED_APPS = [
     'crispy_forms',
     'student.apps.StudentConfig',
-    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
