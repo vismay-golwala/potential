@@ -10,7 +10,7 @@ class dashboard(View):
 	template_name = 'student/dashboard.html'	
 	
 	def get(self, request):
-                return render(request, self.template_name})
+                return render(request, self.template_name)
 	
 	def post(self,request):
             pass

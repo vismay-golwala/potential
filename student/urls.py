@@ -4,7 +4,7 @@ from . import views
 app_name = 'student'
 # URL: /create/student
 urlpatterns = [
-    url(r'^$', views.dashboard, name='dashboard'),
+    url(r'^$', views.dashboard.as_view(), name='dashboard'),
     url(r'^attendance/$', views.attendance.as_view(), name='attendance'),
     url(r'^student/$', views.student_info_form_view.as_view(), name='student_info_form_view'),
     url(r'^batch/$', views.batch_form_view.as_view(), name='batch_form_view'),
