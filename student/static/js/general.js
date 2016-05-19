@@ -26,4 +26,5 @@ $(document).ready(function()
         	}
         });
     });
+    $("#attendance_link").trigger('click');
 });
