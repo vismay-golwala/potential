@@ -5,9 +5,16 @@ from django.views.generic import View
 from django.http import HttpResponse
 
 #Migrated from FBVs to CBVs as CBVs handle get and post logic cleanly
-def dashboard(request):
-    return render(request, 'student/dashboard.html')
 
+class dashboard(View):
+	template_name = 'student/dashboard.html'	
+	
+	def get(self, request):
+                return render(request, self.template_name})
+	
+	def post(self,request):
+            pass
+        
 class attendance(View):
 	template_name = 'student/attendance.html'	
 	
