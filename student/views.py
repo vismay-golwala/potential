@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .forms import student_info_form, batch_form, standard_form, board_form
 from .models import student_info, batch
 from django.views.generic import View
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 #Migrated from FBVs to CBVs as CBVs handle get and post logic cleanly
 
@@ -44,7 +44,7 @@ class student_info_form_view(View):
 			# above. Cases like: login validation.
 			form.save()
             		# return HttpResponseRedirect('/success/')
-			return HttpResponse('<h3>Success</h3>')
+			return HttpResponseRedirect('/dashboard/')
 		return render(request, self.template_name, {"form":form})
 
 class batch_form_view(View):
@@ -59,7 +59,7 @@ class batch_form_view(View):
 		form = self.form_class(request.POST)		
 		if form.is_valid():
 			form.save()
-			return HttpResponse('<h3>Success</h3>')
+			return HttpResponseRedirect('/dashboard/')
 
 class standard_form_view(View):
 	form_class = standard_form
@@ -73,7 +73,7 @@ class standard_form_view(View):
 		form = self.form_class(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponse('<h3>Success</h3>')
+			return HttpResponseRedirect('/dashboard/')
 
 class board_form_view(View):
 	form_class = board_form
@@ -87,7 +87,7 @@ class board_form_view(View):
 		form = self.form_class(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponse('<h3>Success</h3>')
+			return HttpResponseRedirect('/dashboard/')
 
 
 

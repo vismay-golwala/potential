@@ -1,0 +1,27 @@
+<form action="" method="POST">
+	{% for a in b %}
+		<div class="col-sm-12">
+			<div class="col-sm-1">key</div>
+			<div class="col-sm-2">value.fname</div>
+			<div class="col-sm-2">value.lname</div>
+			<div class="col-sm-2">value.contact</div>
+			<div class="col-sm-4">
+				<div class="col-sm-6">
+					<label class="radio-inline">
+						<input type="radio" class="attendance_radio" name="optradio_{{ key }}" checked> Present
+					</label>
+				</div>
+				<div class="col-sm-6">
+					<label class="radio-inline">
+						<input type="radio" class="attendance_radio" name="optradio_{{ key }}"> Absent
+					</label>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	<div class="clearfix"></div><br/>
+		
+	<div class="col-sm-12">
+		<button class="btn btn-success btn-lg">Save</button>
+	</div>
+</form>
