@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-	$(".content_grp").hover(function()
+	$(".data_grp").hover(function()
 	{
 		$(this).find(".edit_btn").show();
 	},
@@ -10,21 +10,21 @@ $(document).ready(function()
 	});
 	$(document).on("click",".edit_btn",function()
 	{
-		$(this).parents(".content_grp").find(".content_div").find(".content").attr("contenteditable",true);
-		$(this).parents(".content_grp").find(".content_div").find(".content").trigger('click');
-		$(this).parents(".content_grp").find(".content_div").find(".content").trigger('click');
-		$(this).parents(".content_grp").find(".content_div").find(".content").focus();
+		$(this).parents(".data_grp").find(".data_div").find(".data").attr("contenteditable",true);
+		$(this).parents(".data_grp").find(".data_div").find(".data").focus();
+		content = $(this).parents(".data_grp").find(".data_div").find(".data");
+		content.text(content.text());
 	});
-	$(".content").blur(function()
+	$(".data").blur(function()
 	{
-		var rel = $(this).parents(".content_grp").attr('rel');
-		var content = $(this).text();
+		var rel = $(this).parents(".data_grp").attr('rel');
+		var data = $(this).text();
 		var caller = $(this);
 		$.ajax
 		({
 			type: "POST",
 			url: "update_cell.php",
-			data: { cell: rel, content: content},
+			data: { cell: rel, data: data},
 			success: function(response)
 			{
 				if(response=="false")

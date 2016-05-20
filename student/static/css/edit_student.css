@@ -5,19 +5,28 @@
 	border-top: 1px solid #ccc;
 	margin-top: 20px;
 }
-.content_grp
+.data_grp
 {
 	padding: 5px;
 }
-.content_div
+.data_div
 {
 	cursor: pointer;
 	height: 50px;
 }
-.content_div p
+.data_div p
 {
 	padding: 5px 0px 5px 8px;
 	margin-top: 3px;
+}
+p.data
+{
+	height: 30px !important;
+}
+.data[contenteditable=true]:focus
+{
+	background: white;
+	border: 2px solid black;
 }
 .edit_btn
 {
