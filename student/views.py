@@ -5,7 +5,14 @@ from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 
 #Migrated from FBVs to CBVs as CBVs handle get and post logic cleanly
-
+def get_attendance(request):
+	if (request.method == "POST"):
+		batch = request.POST['batch']
+		all_student = student_info.objects.all().filter(batch__batch_id=batch)
+		return render(request, "student/student_attendance.html", {"all_student":all_student})
+	else:
+		return HttpResponse(str(request.method))
+ 
 class dashboard(View):
 	template_name = 'student/dashboard.html'	
 	
@@ -23,7 +30,13 @@ class attendance(View):
                 return render(request, self.template_name, {"batch_all":batches})
 	
 	def post(self,request):
-            pass
+            form = NameForm(request.POST)
+            if form.is_valid():
+			# student_form = form.save(commit=False)
+			# name = form.cleaned_data['name'] ... ...
+			#form.save()
+            		# return HttpResponseRedirect('/success/')
+				return HttpResponse('Getting form data')
             
 
 class student_info_form_view(View):

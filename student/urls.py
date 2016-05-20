@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^batch/$', views.batch_form_view.as_view(), name='batch_form_view'),
     url(r'^standard/$', views.standard_form_view.as_view(), name='standard_form_view'),
     url(r'^board/$', views.board_form_view.as_view(), name='board_form_view'),
+    url(r'^test/$', views.get_attendance, name='test'),
 ]

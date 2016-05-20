@@ -2,16 +2,17 @@ $(document).ready(function()
 {
 	$(document).on("change","#standard",function()
 	{
-		var standard = $("#standard").val();
+		var batch = $("#standard").val();
 		var csrf_token = $("#csrf_token").find("input").val();
 		$.ajax
 		({
+		// Check for batch id instead of standard
 			type: "POST",
-			url: "dashboard",
-			data: { standard: standard, csrfmiddlewaretoken: csrf_token },
+			url: "student/test/",
+			data: { batch: batch, csrfmiddlewaretoken: csrf_token },
 			success: function(response)
 			{
-				alert(response);
+				$("#attendance_table").html(response);
 			},
 			error: function()
 			{

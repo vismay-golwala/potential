@@ -1,19 +1,19 @@
 <form action="" method="POST">
-	{% for a in b %}
+
+	{% for student in all_student %}
+		
 		<div class="col-sm-12">
-			<div class="col-sm-1">key</div>
-			<div class="col-sm-2">value.fname</div>
-			<div class="col-sm-2">value.lname</div>
-			<div class="col-sm-2">value.contact</div>
+			
+			<div class="col-sm-2">{{ student.name }}</div>
 			<div class="col-sm-4">
 				<div class="col-sm-6">
 					<label class="radio-inline">
-						<input type="radio" class="attendance_radio" name="optradio_{{ key }}" checked> Present
+						<input type="radio" class="attendance_radio" name="optradio[{{ student.pk }}]" checked value="1"> Present
 					</label>
 				</div>
 				<div class="col-sm-6">
 					<label class="radio-inline">
-						<input type="radio" class="attendance_radio" name="optradio_{{ key }}"> Absent
+						<input type="radio" class="attendance_radio" name="optradio[{{ student.pk }}]" value="0"> Absent
 					</label>
 				</div>
 			</div>
