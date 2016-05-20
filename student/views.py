@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import student_info_form, batch_form, standard_form, board_form
-from .models import student_info, batch
+from .models import student_info, batch, attends
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -9,7 +9,7 @@ def get_attendance(request):
 	if (request.method == "POST"):
 		batch = request.POST['batch']
 		all_student = student_info.objects.all().filter(batch__batch_id=batch)
-		return render(request, "student/student_attendance.html", {"all_student":all_student})
+		return render(request, "student/student_attendance.html", {"all_student":all_student, "batch_id": batch, "index":1})
 	else:
 		return HttpResponse(str(request.method))
  
@@ -27,17 +27,29 @@ class attendance(View):
 	
 	def get(self, request):
                 batches = batch.objects.all()
-                return render(request, self.template_name, {"batch_all":batches})
+                return render(request, self.template_name, {"batch_all":batches })
 	
 	def post(self,request):
-            form = NameForm(request.POST)
-            if form.is_valid():
-			# student_form = form.save(commit=False)
-			# name = form.cleaned_data['name'] ... ...
-			#form.save()
-            		# return HttpResponseRedirect('/success/')
-				return HttpResponse('Getting form data')
-            
+			post = request.POST
+			batch_id = post.get('batch_id')
+			post._mutable = True
+			del post['batch_id']
+			del post['csrfmiddlewaretoken']
+
+			for student_id in post:
+				attendance = post[student_id]
+				obj = student_info.objects.filter(pk=int(student_id))
+				query = attends.objects.create(student=obj[0], attends=attendance)
+				query.save()
+
+			return HttpResponseRedirect('/dashboard/')
+            #form = NameForm(request.POST)
+            #if form.is_valid():
+                    #return HttpResponse('Getting form data')
+                    # student_form = form.save(commit=False)
+                    # name = form.cleaned_data['name'] ... ...
+                    #form.save()
+                    # return HttpResponseRedirect('/success/')
 
 class student_info_form_view(View):
 	form_class = student_info_form
@@ -59,6 +71,16 @@ class student_info_form_view(View):
             		# return HttpResponseRedirect('/success/')
 			return HttpResponseRedirect('/dashboard/')
 		return render(request, self.template_name, {"form":form})
+
+class edit_student(View):
+	template_name = 'student/edit_student.html'
+
+	def get(self,request):
+		students = student_info.objects.all()
+		return render(request, self.template_name, {'students': students})
+
+	def post(self,request):
+		pass
 
 class batch_form_view(View):
 	form_class = batch_form

@@ -1,0 +1,34 @@
+#main_table
+{
+	box-shadow: 5px 5px 5px gray;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	margin-top: 20px;
+}
+.content_grp
+{
+	padding: 5px;
+}
+.content_div
+{
+	cursor: pointer;
+	height: 50px;
+}
+.content_div p
+{
+	padding: 5px 0px 5px 8px;
+	margin-top: 3px;
+}
+.edit_btn
+{
+	height: 30%;
+}
+.lr0pad
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.head_cell
+{
+	padding-left: 4%;
+}

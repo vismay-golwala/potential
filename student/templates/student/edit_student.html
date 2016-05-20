@@ -1,0 +1,77 @@
+{% load staticfiles %}
+{{ students.batch_id }}
+<script src="{% static 'js/edit_student.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/edit_student.css' %}"/>
+<div class="container" id="main_table">
+	<div class="row bg-info">
+		<div class="col-sm-3 head_cell lr0pad">
+			<p class="h3">Firstname</p>
+		</div>
+		<div class="col-sm-2 head_cell lr0pad">
+			<p class="h3">Batch</p>
+		</div>
+		<div class="col-sm-3 head_cell lr0pad">
+			<p class="h3">SMS number</p>
+		</div>
+		<div class="col-sm-2 head_cell lr0pad">
+			<p class="h3">School</p>
+		</div>
+		<div class="col-sm-2 head_cell lr0pad">
+			<p class="h3">Fees</p>
+		</div>
+	</div>
+	{% for record in students %}
+	<div class="row">
+		<div class="content_grp col-sm-3 lr0pad" rel="aa">
+			<div class="edit_btn_div col-sm-2 lr0pad">
+				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</div>
+			<div class="content_div col-sm-6 lr0pad">
+				<p class="h4 content">{{ record.name }}</p>
+			</div>
+		</div>
+		<div class="content_grp col-sm-2 lr0pad" rel="aa">
+			<div class="edit_btn_div col-sm-2 lr0pad">
+				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</div>
+			<div class="content_div col-sm-6 lr0pad">
+				<p class="h4 content">{{ record.batch }}</p>
+			</div>
+		</div>
+		<div class="content_grp col-sm-3 lr0pad" rel="aa">
+			<div class="edit_btn_div col-sm-2 lr0pad">
+				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</div>
+			<div class="content_div col-sm-6 lr0pad">
+				<p class="h4 content">{{ record.sms_mob }}</p>
+			</div>
+		</div>
+		<div class="content_grp col-sm-2 lr0pad" rel="aa">
+			<div class="edit_btn_div col-sm-2 lr0pad">
+				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</div>
+			<div class="content_div col-sm-6 lr0pad">
+				<p class="h4 content">{{ record.school }}</p>
+			</div>
+		</div>
+		<div class="content_grp col-sm-2 lr0pad" rel="aa">
+			<div class="edit_btn_div col-sm-2 lr0pad">
+				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+			</div>
+			<div class="content_div col-sm-6 lr0pad">
+				<p class="h4 content">&#8377 {{ record.total_fees }}</p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>

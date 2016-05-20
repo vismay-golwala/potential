@@ -57,3 +57,12 @@ class attends (models.Model):
 
     #attends - choice ?
     attends = models.CharField (max_length = 100, default = "NA")
+
+    def __str__(self):
+        if self.attends == '1':
+            attendance = "Present"
+        else:
+            attendance = "Absent"
+
+        return str (self.student) + " - " + str (attendance)
+
