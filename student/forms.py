@@ -5,7 +5,7 @@ from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions)
 
-from .models import student_info, batch, board, standard
+from .models import student_info, batch, board, standard, fee_installment
 # Demo Links for using cripsy forms : http://goo.gl/TmPCJb https://godjango.com/29-crispy-forms/
 
 class student_info_form(forms.ModelForm):
@@ -87,3 +87,23 @@ class board_form(forms.ModelForm):
     )
 
 
+class fee_form(forms.ModelForm):
+
+        class Meta:
+                model = fee_installment
+                fields = ['batch','students', 'date', 'amount']
+
+        helper = FormHelper()
+        helper.form_method = 'POST'
+        helper.form_action = 'student/fee/'
+        helper.form_class = 'form-horizontal'
+        helper.label_class = 'col-sm-2'
+        helper.field_class = 'col-sm-4'
+        helper.disable_csrf = False
+        helper.layout = Layout(
+		      Field('batch', css_class='input-sm'),
+                Field('students', css_class='input-sm'),
+                Field('date', css_class='input-sm', type='date'),
+                Field('amount', css_class='input-sm'),
+		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
+    )

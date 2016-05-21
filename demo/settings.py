@@ -31,6 +31,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # Application definition
 
 INSTALLED_APPS = [
+    'smart_selects',
     'crispy_forms',
     'student.apps.StudentConfig',
     'django.contrib.admin',

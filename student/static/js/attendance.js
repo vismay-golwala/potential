@@ -8,7 +8,7 @@ $(document).ready(function()
 		({
 		// Check for batch id instead of standard
 			type: "POST",
-			url: "student/test/",
+			url: "student/get_attendance/",
 			data: { batch: batch, csrfmiddlewaretoken: csrf_token },
 			success: function(response)
 			{

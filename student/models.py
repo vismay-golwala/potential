@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from smart_selects.db_fields import ChainedForeignKey
 
 # Create your models here.
 
@@ -26,13 +27,16 @@ class batch (models.Model):
     def save(self, *args, **kwargs):
 
         #TODO: Write code here to handle multiple batches of same standard and board.
-
-        self.batch_id = str(self.batch_std) + str(self.batch_board)
+        self.batch_id = str(self.batch_std) + "-" + str(self.batch_board)
         return super(batch, self).save(*args, **kwargs)
         
         
     def __str__(self):
         return str (self.batch_id)
+
+    # def get_students(self):
+    #     students = student_info.objects.all().filter(batch=self.batch)
+    #     return students
     
 class student_info (models.Model):
     
@@ -49,6 +53,17 @@ class student_info (models.Model):
     def __str__(self):
         return str (self.name) + " (" + str (self.batch) + ")"
 
+class fee_installment(models.Model):
+
+    batch = models.ForeignKey (batch, on_delete = models.CASCADE)
+    #Reference: http://stackoverflow.com/a/29460671
+    students  = ChainedForeignKey(student_info, chained_field = "batch", chained_model_field="batch", show_all=False,)
+    #TODO: Implement datepicker in the view
+    date = models.DateField()
+    amount = models.CharField (max_length = 10, default = "")
+
+    def __str__(self):
+        return str(self.student) + " (Rs. " + str(self.amount) + ")"
 
 class attends (models.Model):
 

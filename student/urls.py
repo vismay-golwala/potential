@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 
 app_name = 'student'
-# URL: /create/student
+# URL: student/
 urlpatterns = [
     url(r'^$', views.dashboard.as_view(), name='dashboard'),
     url(r'^attendance/$', views.attendance.as_view(), name='attendance'),
@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^batch/$', views.batch_form_view.as_view(), name='batch_form_view'),
     url(r'^standard/$', views.standard_form_view.as_view(), name='standard_form_view'),
     url(r'^board/$', views.board_form_view.as_view(), name='board_form_view'),
-    url(r'^test/$', views.get_attendance, name='test'),
+    url(r'^get_attendance/$',  views.get_attendance, name='get_attendance'),
+    url(r'^fee/$', views.fee_form_view.as_view(), name='fee'),
 ]
