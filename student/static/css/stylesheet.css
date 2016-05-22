@@ -31,3 +31,8 @@ a
 	font-weight: 650;
 	line-height: 23px !important;
 }
+.full_edit_btn
+{
+	font-size: 115%;
+	margin-top: 5px;
+}

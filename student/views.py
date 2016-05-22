@@ -12,7 +12,19 @@ def get_attendance(request):
 		return render(request, "student/student_attendance.html", {"all_student":all_student, "batch_id": batch, "index":1})
 	else:
 		return HttpResponse(str(request.method))
- 
+
+def update_cell(request):
+	if(request.method == "POST"):
+		record = request.POST['cell']
+		data = request.POST['data']
+		myArray = record.split('@')
+		col = myArray[0]
+		row = myArray[1]
+		# Using **args, we can pass dynamic column name which is not normally passed
+		args = { col: data }
+		student_info.objects.filter(pk=row).update(**args)
+		return HttpResponse()
+
 class dashboard(View):
 	template_name = 'student/dashboard.html'	
 	
@@ -77,7 +89,8 @@ class edit_student(View):
 
 	def get(self,request):
 		students = student_info.objects.all()
-		return render(request, self.template_name, {'students': students})
+		batches = batch.objects.all()
+		return render(request, self.template_name, {'students': students, 'batches': batches})
 
 	def post(self,request):
 		pass

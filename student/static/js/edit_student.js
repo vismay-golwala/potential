@@ -20,12 +20,35 @@ $(document).ready(function()
 		var rel = $(this).parents(".data_grp").attr('rel');
 		var data = $(this).text();
 		var caller = $(this);
+		var csrf = $("#csrf_token").find("input").val();
 		$.ajax
 		({
 			type: "POST",
-			url: "update_cell.php",
-			data: { cell: rel, data: data},
-			success: function(response)
+			url: "student/update_cell/",
+			data: { cell: rel, data: data, csrfmiddlewaretoken: csrf},
+			success: function()
+			{
+				if(response=="false")
+					alert("There was some problem updating the data.");
+				else
+				{
+					caller.removeAttr("contenteditable");
+				}
+			}
+		});
+	});
+	$(".batch_edit").change(function()
+	{
+		var rel = $(this).parents(".data_grp").attr('rel');
+		var data = $(this).val();
+		var caller = $(this);
+		var csrf = $("#csrf_token").find("input").val();
+		$.ajax
+		({
+			type: "POST",
+			url: "student/update_cell/",
+			data: { cell: rel, data: data, csrfmiddlewaretoken: csrf},
+			success: function()
 			{
 				if(response=="false")
 					alert("There was some problem updating the data.");
