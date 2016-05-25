@@ -138,6 +138,8 @@ class fee_form_view(View):
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
+                else:
+			return HttpResponse("Failure")
 
 
 
