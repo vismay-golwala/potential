@@ -33,10 +33,6 @@ class batch (models.Model):
         
     def __str__(self):
         return str (self.batch_id)
-
-    # def get_students(self):
-    #     students = student_info.objects.all().filter(batch=self.batch)
-    #     return students
     
 class student_info (models.Model):
     
@@ -57,7 +53,7 @@ class fee_installment(models.Model):
 
     batch = models.ForeignKey (batch, on_delete = models.CASCADE)
     #Reference: http://stackoverflow.com/a/29460671
-    students  = ChainedForeignKey(student_info, chained_field = "batch", chained_model_field="batch", show_all=False,)
+    student  = ChainedForeignKey(student_info, chained_field = "batch", chained_model_field="batch", show_all=False,)
     #TODO: Implement datepicker in the view
     date = models.DateField()
     amount = models.CharField (max_length = 10, default = "")

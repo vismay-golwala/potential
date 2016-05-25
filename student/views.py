@@ -131,7 +131,7 @@ class fee_form_view(View):
 
 	def get(self, request):
 		form = self.form_class
-		return render(request, self.template_name, {"form":form,})
+		return render(request, self.template_name, {"form":form})
 
 	def post(self,request):
 		form = self.form_class(request.POST)

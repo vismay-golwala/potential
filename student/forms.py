@@ -91,7 +91,7 @@ class fee_form(forms.ModelForm):
 
         class Meta:
                 model = fee_installment
-                fields = ['batch','students', 'date', 'amount']
+                fields = ['batch','student', 'date', 'amount']
 
         helper = FormHelper()
         helper.form_method = 'POST'
@@ -101,9 +101,10 @@ class fee_form(forms.ModelForm):
         helper.field_class = 'col-sm-4'
         helper.disable_csrf = False
         helper.layout = Layout(
-		      Field('batch', css_class='input-sm'),
-                Field('students', css_class='input-sm'),
+		Field('batch', css_class='input-sm'),
+                Field('student', css_class='input-sm'),
                 Field('date', css_class='input-sm', type='date'),
                 Field('amount', css_class='input-sm'),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
+
