@@ -13,9 +13,6 @@
 			<p class="h3">SMS number</p>
 		</div>
 		<div class="col-sm-2 head_cell lr0pad">
-			<p class="h3">School</p>
-		</div>
-		<div class="col-sm-2 head_cell lr0pad">
 			<p class="h3">Fees</p>
 		</div>
 		<div class="col-sm-2 head_cell lr0pad">
@@ -23,7 +20,7 @@
 		</div>
 	</div>
 	{% for record in students %}
-	<div class="row">
+	<div class="row student_record">
 		<div class="data_grp col-sm-2 lr0pad" rel="name@{{ record.pk }}">
 			<div class="edit_btn_div col-sm-3 lr0pad">
 				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
@@ -51,16 +48,6 @@
 				<p class="h4 data">{{ record.sms_mob }}</p>
 			</div>
 		</div>
-		<div class="data_grp col-sm-2 lr0pad" rel="school@{{ record.pk }}">
-			<div class="edit_btn_div col-sm-3 lr0pad">
-				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
-					<span class="glyphicon glyphicon-pencil"></span>
-				</button>
-			</div>
-			<div class="data_div col-sm-6 lr0pad">
-				<p class="h4 data">{{ record.school }}</p>
-			</div>
-		</div>
 		<div class="data_grp col-sm-2 lr0pad" rel="total_fees@{{ record.pk }}">
 			<div class="edit_btn_div col-sm-3 lr0pad">
 				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
@@ -72,9 +59,15 @@
 			</div>
 		</div>
 		<div class="col-sm-2 lr0pad" rel="modal_div">
-			<button class="btn btn-primary btn-sm col-sm-offset-2 col-sm-5 full_edit_btn" data-toggle="modal" data-target="#edit_modal" rel="{{ record.pk }}">
+			<button class="btn btn-primary btn-sm col-sm-offset-2 col-sm-5 full_edit_btn lr0pad pull-right" data-toggle="modal" data-target="#edit_modal" rel="{{ record.pk }}">
 				<span class="glyphicon glyphicon-pencil"></span>
-				<span> Edit</span>
+				<span class="h4">&nbsp; Edit</span>
+			</button>
+		</div>
+		<div class="col-sm-2 lr0pad">
+			<button class="btn btn-danger btn-sm col-sm-offset-2 col-sm-5 delete_btn lr0pad" rel="{{ record.pk }}">
+				<span class="glyphicon glyphicon-trash"></span>
+				<span class="h4">&nbsp; Delete</span>
 			</button>
 		</div>
 	</div>

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .forms import student_info_form, batch_form, standard_form, board_form
 from .models import student_info, batch, attends
 from django.views.generic import View
+from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 
 #Migrated from FBVs to CBVs as CBVs handle get and post logic cleanly
@@ -31,24 +32,24 @@ class update_cell(View):
 		student_info.objects.filter(pk=row).update(**args)
 		return HttpResponse()
 
-class edit_full_student(View):
+class edit_full_student(UpdateView):
+	model = student_info
+	fields = ['name','batch','father_name','father_mob','mother_name','mother_mob','sms_mob','school','total_fees']
+	template_name = 'student/edit_full_student.html'
 
-	form_class = student_info
-	template_name = 'student/base_form.html'
+	def get_success_url(self):
+		return '/dashboard/'
+
+class delete_student(View):
 
 	def get(self, request):
-		key = request.GET['key']
-		instance = get_object_or_404(edit_full_student, pk=key)
-		form = edit_full_student(request.GET or None, instance=instance)
-		return direct_to_template(request, self.template_name, {'form': form})
-		#form = self.form_class.filter(pk=1)
-		#return render(request, self.template_name, {"form":form})
-		#key = request.GET['key']
-		#obj = student_info.objects.get(pk=key)
-		#return render(request, 'student/edit_full_student.html', { 'student': obj })
+		pass
 
 	def post(self, request):
-		pass
+		key = request.POST['key']
+		d = student_info.objects.filter(pk=key)
+		d.delete()
+		return HttpResponse()
 
 class dashboard(View):
 	template_name = 'student/dashboard.html'	

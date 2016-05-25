@@ -66,12 +66,28 @@ $(document).ready(function()
 		$.ajax
 		({
 			type: "GET",
-			url: "student/edit_full_student/",
-			data: { key: rel, csrfmiddlewaretoken: csrf },
+			url: "student/edit_full_student/"+rel+"/",
+			data: { csrfmiddlewaretoken: csrf },
 			success: function(response)
 			{
 				$("#edit_content").html(response);
-				$("#edit_content").append('<h1>'+rel+'</h1>')
+				$("#edit_content").find("form").attr('action','student/edit_full_student/'+rel+'/');
+			}
+		});
+	});
+	$(".delete_btn").click(function()
+	{
+		var rel = $(this).attr('rel');
+		var csrf = $("#csrf_token").find("input").val();
+		var caller = $(this).parents(".student_record");
+		$.ajax
+		({
+			type: "POST",
+			url: "student/delete_student/",
+			data: { key: rel, csrfmiddlewaretoken: csrf },
+			success: function()
+			{
+				caller.fadeOut("slow");
 			}
 		});
 	});

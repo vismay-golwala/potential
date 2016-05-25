@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^board/$', views.board_form_view.as_view(), name='board_form_view'),
     url(r'^update_cell/$', views.update_cell.as_view(), name='update_cell'),
     url(r'^test/$', views.get_attendance.as_view(), name='test'),
-    url(r'^edit_full_student/$', views.edit_full_student.as_view(), name='edit_full_student'),
+    url(r'^edit_full_student/(?P<pk>\d+)/$', views.edit_full_student.as_view(), name='edit_full_student'),
+    url(r'^delete_student/$', views.delete_student.as_view(), name='delete_student'),
 ]

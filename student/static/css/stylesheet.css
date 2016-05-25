@@ -31,14 +31,13 @@ a
 	font-weight: 650;
 	line-height: 23px !important;
 }
-.full_edit_btn
+#main_table .full_edit_btn, #main_table .delete_btn
 {
-	font-size: 115%;
-	margin-top: 5px;
+	margin-top: 10px;
 }
 #main_table .modal-body
 {
-	min-height: 500px;
+	min-height: 800px;
 }
 #main_table .modal-header h4
 {
