@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^board/$', views.board_form_view.as_view(), name='board_form_view'),
     url(r'^get_attendance/$',  views.get_attendance, name='get_attendance'),
     url(r'^fee/$', views.fee_form_view.as_view(), name='fee'),
+    url(r'^test_model/$', views.test_model_form_view.as_view(), name='test'),
 ]

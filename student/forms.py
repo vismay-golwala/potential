@@ -5,7 +5,7 @@ from crispy_forms.layout import Submit, Layout, Field
 from crispy_forms.bootstrap import (
     PrependedText, PrependedAppendedText, FormActions)
 
-from .models import student_info, batch, board, standard, fee_installment
+from .models import student_info, batch, board, standard, fee_installment, test_model
 # Demo Links for using cripsy forms : http://goo.gl/TmPCJb https://godjango.com/29-crispy-forms/
 
 class student_info_form(forms.ModelForm):
@@ -105,6 +105,29 @@ class fee_form(forms.ModelForm):
                 Field('student', css_class='input-sm'),
                 Field('date', css_class='input-sm', type='date'),
                 Field('amount', css_class='input-sm'),
+		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
+    )
+
+class test_model_form (forms.ModelForm):
+
+        class Meta:
+                model = test_model
+                fields = ['student','batch', 'date', 'topic', 'out_of', 'obtained']
+
+        helper = FormHelper()
+        helper.form_method = 'POST'
+        helper.form_action = 'student/test_model/'
+        helper.form_class = 'form-horizontal'
+        helper.label_class = 'col-sm-2'
+        helper.field_class = 'col-sm-4'
+        helper.disable_csrf = False
+        helper.layout = Layout(
+		Field('student', css_class='input-sm'),
+                Field('batch', css_class='input-sm'),
+                Field('date', css_class='input-sm', type='date'),
+                Field('topic', css_class='input-sm'),
+		Field('out_of', css_class='input-sm'),
+		Field('obtained', css_class='input-sm'),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
 

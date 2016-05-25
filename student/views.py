@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import student_info_form, batch_form, standard_form, board_form, fee_form
+from .forms import student_info_form, batch_form, standard_form, board_form, fee_form, test_model_form
 from .models import student_info, batch, attends
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
@@ -127,6 +127,22 @@ class board_form_view(View):
 
 class fee_form_view(View):
         form_class = fee_form
+        template_name = 'student/base_form.html'
+
+	def get(self, request):
+		form = self.form_class
+		return render(request, self.template_name, {"form":form})
+
+	def post(self,request):
+		form = self.form_class(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/dashboard/')
+                else:
+			return HttpResponse("Failure")
+
+class test_model_form_view(View):
+        form_class = test_model_form
         template_name = 'student/base_form.html'
 
 	def get(self, request):

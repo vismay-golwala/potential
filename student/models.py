@@ -76,3 +76,13 @@ class fee_installment(models.Model):
 
     def __str__(self):
         return str(self.student) + " (Rs. " + str(self.amount) + ")"
+
+class test_model (models.Model):
+
+    student = models.ForeignKey (student_info, on_delete = models.CASCADE)
+    batch = models.ForeignKey (batch, on_delete = models.CASCADE)
+    date = models.DateField()
+    topic = models.CharField(max_length = 100, default="")
+    out_of = models.CharField (max_length = 10, default = "0")
+    obtained = models.CharField (max_length = 10, default = "0")
+
