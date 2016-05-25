@@ -36,3 +36,25 @@ a
 	font-size: 115%;
 	margin-top: 5px;
 }
+#main_table .modal-body
+{
+	min-height: 500px;
+}
+#main_table .modal-header h4
+{
+	font-weight: 600;
+	font-size: 200%;
+}
+#main_table .modal-header .close
+{
+	opacity: 1;
+	z-index: 300;
+	font-size: 200%;
+	margin-top: 1%;
+	margin-right: 1%;
+	outline: none;
+}
+#main_table .modal-header .close:hover
+{
+	color: #0da3e2;
+}

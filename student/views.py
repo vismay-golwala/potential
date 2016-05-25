@@ -5,16 +5,22 @@ from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 
 #Migrated from FBVs to CBVs as CBVs handle get and post logic cleanly
-def get_attendance(request):
-	if (request.method == "POST"):
-		batch = request.POST['batch']
-		all_student = student_info.objects.all().filter(batch__batch_id=batch)
-		return render(request, "student/student_attendance.html", {"all_student":all_student, "batch_id": batch, "index":1})
-	else:
+class get_attendance(View):
+
+	def get(self, request):
 		return HttpResponse(str(request.method))
 
-def update_cell(request):
-	if(request.method == "POST"):
+	def post(self, request):
+		batch = request.POST['batch']
+		all_student = student_info.objects.all().filter(batch__batch_id=batch)
+		return render(request, "student/student_attendance.html", {"all_student":all_student, "batch_id": batch, "index":1})		
+
+class update_cell(View):
+	
+	def get(self, request):
+		pass
+
+	def post(self, request):
 		record = request.POST['cell']
 		data = request.POST['data']
 		myArray = record.split('@')
@@ -24,6 +30,25 @@ def update_cell(request):
 		args = { col: data }
 		student_info.objects.filter(pk=row).update(**args)
 		return HttpResponse()
+
+class edit_full_student(View):
+
+	form_class = student_info
+	template_name = 'student/base_form.html'
+
+	def get(self, request):
+		key = request.GET['key']
+		instance = get_object_or_404(edit_full_student, pk=key)
+		form = edit_full_student(request.GET or None, instance=instance)
+		return direct_to_template(request, self.template_name, {'form': form})
+		#form = self.form_class.filter(pk=1)
+		#return render(request, self.template_name, {"form":form})
+		#key = request.GET['key']
+		#obj = student_info.objects.get(pk=key)
+		#return render(request, 'student/edit_full_student.html', { 'student': obj })
+
+	def post(self, request):
+		pass
 
 class dashboard(View):
 	template_name = 'student/dashboard.html'	
@@ -136,9 +161,3 @@ class board_form_view(View):
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
-
-
-
-
-
-

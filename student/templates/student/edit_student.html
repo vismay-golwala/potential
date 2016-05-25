@@ -35,7 +35,7 @@
 			</div>
 		</div>
 		<div class="data_grp col-sm-2 lr0pad" rel="batch@{{ record.pk }}">
-			<select class="select batch_edit col-sm-9">
+			<select class="select batch_edit col-sm-12">
 				{% for batch in batches %}
 					<option value="{{ batch.pk }}" {% if batch.pk == record.batch_id %} selected {% endif %}>{{ batch.batch_id }}</option>
 				{% endfor %}
@@ -71,12 +71,27 @@
 				<p class="h4 data"> {{ record.total_fees }}</p>
 			</div>
 		</div>
-		<div class="col-sm-2 lr0pad" rel="aa">
-			<button class="btn btn-primary btn-sm col-sm-offset-2 col-sm-5 full_edit_btn">
+		<div class="col-sm-2 lr0pad" rel="modal_div">
+			<button class="btn btn-primary btn-sm col-sm-offset-2 col-sm-5 full_edit_btn" data-toggle="modal" data-target="#edit_modal" rel="{{ record.pk }}">
 				<span class="glyphicon glyphicon-pencil"></span>
 				<span> Edit</span>
 			</button>
 		</div>
 	</div>
 	{% endfor %}
+	<div id="edit_modal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-info">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Student Info</h4>
+				</div>
+				<div class="modal-body">
+					<div class="col-sm-12" id="edit_content">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

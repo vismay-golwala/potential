@@ -59,4 +59,20 @@ $(document).ready(function()
 			}
 		});
 	});
+	$(".full_edit_btn").click(function()
+	{
+		var rel = $(this).attr('rel');
+		var csrf = $("#csrf_token").find("input").val();
+		$.ajax
+		({
+			type: "GET",
+			url: "student/edit_full_student/",
+			data: { key: rel, csrfmiddlewaretoken: csrf },
+			success: function(response)
+			{
+				$("#edit_content").html(response);
+				$("#edit_content").append('<h1>'+rel+'</h1>')
+			}
+		});
+	});
 });
