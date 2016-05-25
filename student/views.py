@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.forms import modelformset_factory
 from .forms import student_info_form, batch_form, standard_form, board_form, fee_form, test_model_form
-from .models import student_info, batch, attends
+from .models import student_info, batch, attends, test_model
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -147,7 +148,8 @@ class test_model_form_view(View):
 
 	def get(self, request):
 		form = self.form_class
-		return render(request, self.template_name, {"form":form})
+		formset = modelformset_factory(test_model, form=test_model_form, extra=3)
+		return render(request, self.template_name, {"form":form, "formset":formset})
 
 	def post(self,request):
 		form = self.form_class(request.POST)
