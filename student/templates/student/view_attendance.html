@@ -1,10 +1,11 @@
+<h1>View Attendance</h1>
 <div class="form-group col-sm-3">
-	<select class="form-control select" id="standard" data-placeholder="<Select Batch>">
+	<select class="form-control select" id="batch_attendance" data-placeholder="<Select Batch>">
 		<option></option>
 		{% for batch in batch_all %}
 			<option value="{{ batch.batch_id }}">{{ batch.batch_id }}</option>
 		{% endfor %}
 	</select>
 </div><br/><br/><br/>
-<div id="attendance_table">
+<div id="view_attendance_table">
 </div>

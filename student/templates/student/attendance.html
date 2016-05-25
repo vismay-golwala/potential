@@ -5,6 +5,14 @@
 			<option value="{{ batch.batch_id }}">{{ batch.batch_id }}</option>
 		{% endfor %}
 	</select>
+</div>
+<div class="form-group col-sm-3">
+	<input type="date" name="attendance_date" id="attendance_date" class="form-control pointer"/>
+</div>
+<div class="form-group col-sm-3">
+	<button class="btn btn-primary" id="get_attendance_btn">
+		Go &nbsp;<span class="glyphicon glyphicon-log-out"></span>
+	</button>
 </div><br/><br/><br/>
 <div id="attendance_table">
 </div>

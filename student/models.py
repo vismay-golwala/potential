@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
-
 from django.db import models
-
+import datetime
 # Create your models here.
 
 class standard(models.Model):
@@ -57,6 +56,7 @@ class attends (models.Model):
 
     #attends - choice ?
     attends = models.CharField (max_length = 100, default = "NA")
+    attendance_date = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):
         if self.attends == '1':

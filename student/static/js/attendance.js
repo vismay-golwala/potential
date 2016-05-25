@@ -1,15 +1,20 @@
 $(document).ready(function()
 {
-	$(document).on("change","#batch",function()
+	$(document).on("click","#get_attendance_btn",function()
 	{
 		var batch = $("#batch").val();
+		var attendance_date = $("#attendance_date").val();
 		var csrf_token = $("#csrf_token").find("input").val();
+		
+		if(attendance_date == "" || batch == "")
+			return;
+
 		$.ajax
 		({
 		// Check for batch id instead of standard
 			type: "POST",
-			url: "student/test/",
-			data: { batch: batch, csrfmiddlewaretoken: csrf_token },
+			url: "student/get_attendance/",
+			data: { batch: batch, attendance_date: attendance_date, csrfmiddlewaretoken: csrf_token },
 			success: function(response)
 			{
 				$("#attendance_table").html(response);

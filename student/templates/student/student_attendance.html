@@ -24,6 +24,7 @@
 	{% endfor %}
 	{% csrf_token %}
 	<input type="hidden" name="batch_id" value="{{ batch_id }}"/>
+	<input type="hidden" name="attendance_date" value="{{ attendance_date }}"/>
 	<div class="col-sm-12">
 		<button class="btn btn-success btn-lg">Save</button>
 	</div>
