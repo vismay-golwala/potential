@@ -49,18 +49,6 @@ class student_info (models.Model):
     def __str__(self):
         return str (self.name) + " (" + str (self.batch) + ")"
 
-class fee_installment(models.Model):
-
-    batch = models.ForeignKey (batch, on_delete = models.CASCADE)
-    #Reference: http://stackoverflow.com/a/29460671
-    student  = ChainedForeignKey(student_info, chained_field = "batch", chained_model_field="batch", show_all=False,)
-    #TODO: Implement datepicker in the view
-    date = models.DateField()
-    amount = models.CharField (max_length = 10, default = "")
-
-    def __str__(self):
-        return str(self.student) + " (Rs. " + str(self.amount) + ")"
-
 class attends (models.Model):
 
     student = models.ForeignKey (student_info, on_delete = models.CASCADE)
@@ -77,3 +65,14 @@ class attends (models.Model):
 
         return str (self.student) + " - " + str (attendance)
 
+class fee_installment(models.Model):
+
+    batch = models.ForeignKey (batch, on_delete = models.CASCADE)
+    #Reference: http://stackoverflow.com/a/29460671
+    student  = ChainedForeignKey(student_info, chained_field = "batch", chained_model_field="batch", show_all=False,)
+    #TODO: Implement datepicker in the view
+    date = models.DateField()
+    amount = models.CharField (max_length = 10, default = "")
+
+    def __str__(self):
+        return str(self.student) + " (Rs. " + str(self.amount) + ")"
