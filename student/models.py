@@ -5,13 +5,13 @@ from django.db import models
 # Create your models here.
 
 class standard(models.Model):
-    standard = models.CharField(max_length = 10, default = "NA")
+    standard = models.CharField(max_length = 10)
 
     def __str__(self):
         return self.standard
 
 class board(models.Model):
-    board = models.CharField(max_length = 10, default = "NA")
+    board = models.CharField(max_length = 10)
 
     def __str__(self):
         return self.board
@@ -27,7 +27,7 @@ class batch (models.Model):
 
         #TODO: Write code here to handle multiple batches of same standard and board.
 
-        self.batch_id = str(self.batch_std) + str(self.batch_board)
+        self.batch_id = str(self.batch_std) + ' (' + str(self.batch_board) + ')'
         return super(batch, self).save(*args, **kwargs)
         
         

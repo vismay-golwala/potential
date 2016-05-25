@@ -1,8 +1,8 @@
 $(document).ready(function()
 {
-	$(document).on("change","#standard",function()
+	$(document).on("change","#batch",function()
 	{
-		var batch = $("#standard").val();
+		var batch = $("#batch").val();
 		var csrf_token = $("#csrf_token").find("input").val();
 		$.ajax
 		({

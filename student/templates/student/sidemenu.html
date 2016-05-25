@@ -13,18 +13,22 @@
 
         <ul class="sidebar-menu">
             <li class="active">&nbsp</li>
-            <li class="active">
-                <a ref="student/attendance/" id="attendance_link"><i class="fa fa-check-square-o"></i><span>Attendance</span></a>
-            </li>
             <li class="treeview">
-                <a ref=""><i class="fa fa-gears"></i><span> Student</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a ref=""><i class="fa fa-check-square-o"></i><span> Attendance</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a ref="student/student/"><i class="fa fa-graduation-cap"></i> Add Student</a></li>
-                    <li><a ref="student/edit_student/"><i class="fa fa-group"></i> Edit Student</a></li>
+                    <li><a ref="student/attendance/" id="attendance_link"><i class="fa fa-hand-pointer-o"></i> Take Attendance</a></li>
+                    <li><a ref="student/view_attendance/"><i class="fa fa-bar-chart"></i> View Attendance</a></li>
                 </ul>
             </li>
             <li class="treeview">
-                <a ref=""><i class="fa fa-gears"></i><span> Manage Batch</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a ref=""><i class="fa fa-graduation-cap"></i><span> Student</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a ref="student/student/"><i class="fa fa-user-plus"></i> Add Student</a></li>
+                    <li><a ref="student/edit_student/"><i class="fa fa-edit"></i> Edit Student</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a ref=""><i class="fa fa-group"></i><span> Manage Batch</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a ref="student/batch/"><i class="fa fa-group"></i> Create Batch</a></li>
                     <li><a ref="student/board/"><i class="fa fa-university"></i> Add Board</a></li>

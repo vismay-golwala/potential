@@ -91,7 +91,7 @@ class standard_form(forms.ModelForm):
         helper.field_class = 'col-sm-4'
         helper.disable_csrf = False
         helper.layout = Layout(
-		Field('standard', css_class='input-sm'),
+		Field('standard', css_class='input-sm', placeholder='Enter Standard'),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
 
@@ -108,7 +108,7 @@ class board_form(forms.ModelForm):
         helper.field_class = 'col-sm-4'
         helper.disable_csrf = False
         helper.layout = Layout(
-		Field('board', css_class='input-sm'),
+		Field('board', css_class='input-sm', placeholder='Enter Board'),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
 

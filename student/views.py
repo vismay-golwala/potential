@@ -89,6 +89,9 @@ class attendance(View):
                     #form.save()
                     # return HttpResponseRedirect('/success/')
 
+class view_attendance(View):
+	pass
+
 class student_info_form_view(View):
 	form_class = student_info_form
 	template_name = 'student/base_form.html'	

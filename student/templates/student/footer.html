@@ -1,12 +1,15 @@
-
+{% load staticfiles %}
   <!-- Main Footer -->
+  <div id="loader_div">
+    <img src="{% static 'img/loader.gif' %}">
+  </div>
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2015 <a href="#">Potential++</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2015 <a href="dashboard/">Potential++</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

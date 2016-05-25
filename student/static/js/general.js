@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+    $("#loader_div").remove();
     $(".select").select2
     ({
         allowClear: true

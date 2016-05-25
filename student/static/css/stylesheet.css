@@ -57,3 +57,19 @@ a
 {
 	color: #0da3e2;
 }
+#loader_div
+{
+	position: absolute;
+	left: 17.2%;
+	top: 8%;
+	height: 85%;
+	width: 100%;
+	z-index: 100;
+	display: none;
+}
+#loader_div img
+{
+	margin-left: 39%;
+	margin-top: 20%;
+	display: none;
+}
