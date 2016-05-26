@@ -14,8 +14,10 @@
         <link rel="stylesheet" href="{% static 'others/dist/css/skins/_all-skins.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
         <link rel="stylesheet" href="{% static 'css/select2.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery-confirm.css' %}">
         <script src="{% static 'others/plugins/jQuery/jQuery-2.1.4.min.js' %}"></script>
         <script src="{% static 'others/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery-confirm.js' %}"></script>
         <script>
         $(document).ready(function()
         {
@@ -46,5 +48,8 @@
               <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
               </a>
+              <div id="title_div">
+                <span id="link_title">Header</span>
+              </div>
             </nav>
           </header>

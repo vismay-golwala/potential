@@ -2,28 +2,28 @@
 <script src="{% static 'js/edit_student.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'css/edit_student.css' %}"/>
 <div class="container" id="main_table">
-	<div class="row bg-info">
+	<div class="row bg-red white" id="edit_student_header">
 		<div class="col-sm-2 head_cell lr0pad">
-			<p class="h3">Firstname</p>
+			<p class="h2">Firstname</p>
 		</div>
 		<div class="col-sm-2 head_cell lr0pad">
-			<p class="h3">Batch</p>
+			<p class="h2">Batch</p>
 		</div>
 		<div class="col-sm-2 head_cell lr0pad">
-			<p class="h3">SMS number</p>
+			<p class="h2">SMS number</p>
+		</div>
+		<div class="col-sm-1 head_cell lr0pad">
+			<p class="h2">Fees</p>
 		</div>
 		<div class="col-sm-2 head_cell lr0pad">
-			<p class="h3">Fees</p>
-		</div>
-		<div class="col-sm-2 head_cell lr0pad">
-			<p class="h3"></p>
+			<p class="h2"></p>
 		</div>
 	</div>
 	{% for record in students %}
 	<div class="row student_record">
 		<div class="data_grp col-sm-2 lr0pad" rel="name@{{ record.pk }}">
 			<div class="edit_btn_div col-sm-3 lr0pad">
-				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+				<button class="btn btn-reddit edit_btn col-sm-offset-1 col-sm-10" style="display: none">
 					<span class="glyphicon glyphicon-pencil"></span>
 				</button>
 			</div>
@@ -40,7 +40,7 @@
 		</div>
 		<div class="data_grp col-sm-2 lr0pad" rel="sms_mob@{{ record.pk }}">
 			<div class="edit_btn_div col-sm-3 lr0pad">
-				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+				<button class="btn btn-reddit edit_btn col-sm-offset-1 col-sm-10" style="display: none">
 					<span class="glyphicon glyphicon-pencil"></span>
 				</button>
 			</div>
@@ -50,7 +50,7 @@
 		</div>
 		<div class="data_grp col-sm-2 lr0pad" rel="total_fees@{{ record.pk }}">
 			<div class="edit_btn_div col-sm-3 lr0pad">
-				<button class="btn btn-info edit_btn col-sm-offset-1 col-sm-10" style="display: none">
+				<button class="btn btn-reddit edit_btn col-sm-offset-1 col-sm-10" style="display: none">
 					<span class="glyphicon glyphicon-pencil"></span>
 				</button>
 			</div>
@@ -79,7 +79,7 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Student Info</h4>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" id="edit_modal_body">
 					<div class="col-sm-12" id="edit_content">
 
 					</div>

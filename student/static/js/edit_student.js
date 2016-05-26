@@ -80,14 +80,34 @@ $(document).ready(function()
 		var rel = $(this).attr('rel');
 		var csrf = $("#csrf_token").find("input").val();
 		var caller = $(this).parents(".student_record");
-		$.ajax
+		$.confirm
 		({
-			type: "POST",
-			url: "student/delete_student/",
-			data: { key: rel, csrfmiddlewaretoken: csrf },
-			success: function()
+			title: 'Are you sure?',
+			content: "You won't be able to revert this action!" ,
+			confirmButton: 'Delete',
+    		cancelButton: 'Cancel',
+			confirmButtonClass: 'btn-danger',
+    		cancelButtonClass: 'btn-info',
+    		closeIcon: true,
+    		closeIconClass: 'glyphicon glyphicon-remove',
+    		theme: 'material',
+    		backgroundDismiss: true,
+			confirm: function()
 			{
-				caller.fadeOut("slow");
+				$.ajax
+				({
+					type: "POST",
+					url: "student/delete_student/",
+					data: { key: rel, csrfmiddlewaretoken: csrf },
+					success: function()
+					{
+						caller.fadeOut("slow");
+					}
+				});
+			},
+			cancel: function()
+			{
+			    
 			}
 		});
 	});

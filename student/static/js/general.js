@@ -12,6 +12,11 @@ $(document).ready(function()
 
         if(url=="" || url==undefined || url==null)
             return;
+
+        $(".sidebar-menu li a").removeClass("current_link")
+        $(this).addClass("current_link");
+        
+        $("#link_title").text($(this).text());
         $.ajax
         ({
         	type: "GET",
@@ -29,5 +34,9 @@ $(document).ready(function()
         	}
         });
     });
-    $("#attendance_link").trigger('click');
+    setTimeout(function()
+        {
+            $("#attendance_link").parents(".treeview-menu").prev().trigger('click');
+            $("#attendance_link").trigger('click');
+        },100);
 });

@@ -2,7 +2,7 @@ body
 {
 	font-size: 17px;
 }
-.pointer, a
+.pointer, a, input[type=radio]
 {
 	cursor: pointer;
 }
@@ -13,29 +13,70 @@ body
 	height: 20px;
 	padding: 10px;
 }
+input[type=date], input[type=month]
+{
+	height: 42px;
+	font-size: 120%;
+	border-radius: 2px;
+	border: 1px solid #aaa;
+}
+.font125
+{
+	font-size: 125%;
+}
 #content_div
 {
-	min-height: 500px;
+	min-height: 600px;
+	overflow-x: auto !important;
+	margin-right: 10px !important;
+}
+.white
+{
+	color: white;
 }
 .current_link
 {
-	color: white;
+	color: white !important;
 }
 a
 {
 	text-decoration: none !important;
 }
-.select2-selection__rendered
+.select2-selection__rendered, .select2-selection__arrow
 {
 	font-size: 115%;
 	font-weight: 650;
-	line-height: 23px !important;
+	line-height: 36px !important;
+	height: 40px !important;
+}
+.select2-selection__arrow
+{
+	margin-right: 8px;
+}
+.select2-selection
+{
+	height: 42px !important;
+}
+.bg-ltblue
+{
+	background: #00c0ef;
+}
+#title_div
+{
+	text-align: center;
+	padding-top: 0.3%;
+}
+#link_title
+{
+	color: white;
+	font-size: 200%;
+	margin-right: 8%;
 }
 #main_table .full_edit_btn, #main_table .delete_btn
 {
 	margin-top: 10px;
 }
-#main_table .modal-body
+#main_table #edit_modal_body
 {
 	min-height: 800px;
 }
@@ -57,6 +98,10 @@ a
 {
 	color: #0da3e2;
 }
+.student_record:hover
+{
+	background: #ffcccc;
+}
 #loader_div
 {
 	position: absolute;
@@ -77,6 +122,7 @@ a
 {
 	box-shadow: -3px 3px 3px gray;
 	background: white;
+	border-top: 6px solid #383663;
 }
 #view_attendance_result td, #view_attendance_result th
 {
@@ -104,4 +150,60 @@ a
 #view_attendance_result .absent
 {
 	color: #ff0000;
+}
+#view_attendance_btn, #get_attendance_btn
+{
+	font-size: 115%;
+	font-weight: 600;
+}
+#attendance_table
+{
+	background: white;
+	border: 1px solid #e6e6e6;
+	overflow: hidden;
+	padding-bottom: 10px;
+	display: none;
+	border-radius: 3px;
+}
+#attendance_header
+{
+	background: #605ca8;
+	color: white;
+	font-weight: 700;
+	font-size: 125%;
+	height: 35px;
+	padding-top: 3px; 
+}
+#attendance_header>div
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.attendance_row
+{
+	padding-left: 15px !important;
+}
+.attendance_row>div, .attendance_row label
+{
+	font-weight: 600;
+	font-size: 110%;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.attendance_row:first-child
+{
+	border-top: 1px solid #ccc;
+}
+.attendance_row
+{
+	padding: 7px 0px;
+	border-bottom: 1px solid #ccc;
+}
+.attendance_row:hover
+{
+	background: #e6e6e6;
+}
+#attendance_save
+{
+	margin-top: 9px;
 }
