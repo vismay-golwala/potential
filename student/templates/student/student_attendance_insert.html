@@ -1,5 +1,5 @@
 <form action="student/attendance/" method="POST" name="NameForm">
-	{% for student in all_student %}
+	{% for student in student_all %}
 		<div class="col-sm-12">
 			<div class="col-sm-1">
 				{{ student.pk }}
@@ -10,7 +10,7 @@
 			<div class="col-sm-4">
 				<div class="col-sm-6">
 					<label class="radio-inline">
-						<input type="radio" class="attendance_radio" name="{{ student.pk }}" checked value="1"> Present
+						<input type="radio" class="attendance_radio" name="{{ student.pk }}" value="1" checked> Present
 					</label>
 				</div>
 				<div class="col-sm-6">

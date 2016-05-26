@@ -38,12 +38,12 @@ class attendance(View):
 			for student_id in post:
 				attendance = post[student_id]
 				obj = student_info.objects.filter(pk=int(student_id))
-				check_obj = attends.objects.filter(student=obj[0], attendance_date=date)
-
+				batch_obj = batch.objects.filter(batch_id=batch_id)
+				check_obj = attends.objects.filter(student=obj[0], batch=batch_obj[0], attendance_date=date)
 				if check_obj.exists():
 					check_obj.update(attends=attendance)
 				else:
-					query = attends.objects.create(student=obj[0], attends=attendance, attendance_date = date)
+					query = attends.objects.create(student=obj[0], batch=batch_obj[0], attends=attendance, attendance_date = date)
 					query.save()
 
 			return HttpResponseRedirect('/dashboard/')
@@ -63,8 +63,17 @@ class get_attendance(View):
 	def post(self, request):
 		batch = request.POST.get('batch')
 		attendance_date = request.POST.get('attendance_date')
-		all_student = student_info.objects.all().filter(batch__batch_id=batch)
-		return render(request, "student/student_attendance.html", {"all_student":all_student, "batch_id": batch, "attendance_date": attendance_date, "index":1})		
+		date = datetime.datetime.strptime(attendance_date, "%Y-%m-%d").date()
+
+		attendance = attends.objects.filter(attendance_date = date, batch__batch_id=batch)
+
+		# column__field is used when using foreign key, we want to access column of another table
+		# In this example, we are accessing batch_id of batch object which is a foreign key
+		if attendance.exists():
+			return render(request, "student/student_attendance_edit.html", {"attendance_all": attendance, "batch_id": batch, "attendance_date": attendance_date})
+		else:
+			student_all = student_info.objects.all().filter(batch__batch_id=batch)
+			return render(request, "student/student_attendance_insert.html", {"student_all": student_all, "batch_id": batch, "attendance_date": attendance_date})		
 
 class view_attendance(View):
 	template_name = 'student/view_attendance.html'	

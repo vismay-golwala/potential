@@ -26,7 +26,7 @@ class batch (models.Model):
 
         #TODO: Write code here to handle multiple batches of same standard and board.
 
-        self.batch_id = str(self.batch_std) + ' (' + str(self.batch_board) + ')'
+        self.batch_id = str(self.batch_std) + '-' + str(self.batch_board)
         return super(batch, self).save(*args, **kwargs)
         
         
@@ -52,7 +52,7 @@ class student_info (models.Model):
 class attends (models.Model):
 
     student = models.ForeignKey (student_info, on_delete = models.CASCADE)
-   # batch = models.ForeignKey (batch, on_delete = models.CASCADE)
+    batch = models.ForeignKey (batch, on_delete = models.CASCADE, null=True)
 
     #attends - choice ?
     attends = models.CharField (max_length = 100, default = "NA")
