@@ -1,0 +1,27 @@
+<div class="form-inline">
+	<div class="form-group">
+    	<label for="date">Test date</label>
+    	<input type="date" class="form-control" id="test_date" placeholder="Select date">
+  	</div>&nbsp;&nbsp;
+	
+	<div class="form-group">
+    	<label for="test_out_of">Out of</label>
+    	<input type="number" class="form-control" id="test_out_of" placeholder="Out of">
+  	</div>&nbsp;&nbsp;
+	<div class="form-group">
+    	<label for="test_topic">Topic</label>
+    	<input type="text" class="form-control" id="test_topic" placeholder="Enter topic">
+  	</div>&nbsp;&nbsp;
+	<div class="form-group">
+	<label for="test_batch">Batch</label>
+	<select class="form-control select input-lg" id="test_batch" data-placeholder="<Select Batch>" >
+		<option></option>
+		{% for batch in batch_all %}
+			<option value="{{ batch.batch_id }}">{{ batch.batch_id }}</option>
+		{% endfor %}
+	</select>
+	</div>
+
+</div><br/><br/><br/>
+<div id="test_table">
+</div>
