@@ -85,4 +85,6 @@ class test_model (models.Model):
     topic = models.CharField(max_length = 100, default="")
     out_of = models.CharField (max_length = 10, default = "0")
     obtained = models.CharField (max_length = 10, default = "0")
-
+    
+    def __str__(self):
+        return str(self.student) + " (" + self.obtained + "/" + self.out_of + "-" + self.topic + ")"

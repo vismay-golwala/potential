@@ -151,7 +151,30 @@ class test_model_form_view(View):
 		return render(request, self.template_name, {"batch_all":all_batch})
 
 	def post(self,request):
-		pass
+			post = request.POST
+			test_date = post.get('test_date')
+			test_out_of = post.get('test_out_of')
+			test_topic = post.get('test_topic')
+			batch_obj = batch.objects.filter(batch_id=str(post.get('test_batch')))
+			post._mutable = True
+			del post['test_date']
+			del post['test_out_of']
+			del post['test_topic']
+			del post['test_batch']
+			del post['csrfmiddlewaretoken']
+
+			for student_id in post:
+				mark = post[student_id]
+				student_obj = student_info.objects.filter(pk=int(student_id))
+				query = test_model.objects.create(student=student_obj[0],
+												batch=batch_obj[0],
+												date=test_date,
+												topic=test_topic,
+												out_of=test_out_of,
+												obtained=mark)
+				query.save()
+
+			return HttpResponseRedirect('/dashboard/')
 
 def get_test_students(request):
 	if (request.method == "POST"):
