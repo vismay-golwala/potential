@@ -92,13 +92,28 @@ class view_attendance(View):
 		attendance = {}
 		for student in all_students:
 			name = student.name
-			attendance[name] = []
+			attendance[name] = {}
+			attendance[name]['data'] = []
+			present = 0
+			absent = 0
+			none = 0
 			for day in days:
 				attend_obj = attends.objects.filter(student= student, batch__batch_id = batch_id, attendance_date=day)
 				if attend_obj.exists():
-					attendance[name].append(attends.objects.get(student= student, batch__batch_id = batch_id, attendance_date=day))
+					temp_obj = attends.objects.get(student= student, batch__batch_id = batch_id, attendance_date=day)
+					attendance[name]['data'].append(temp_obj)
+					if temp_obj.attends == "1":
+						present += 1
+					else:
+						absent += 1
 				else:
-					attendance[name].append("-")
+					attendance[name]['data'].append("-")
+					none += 1
+
+			attendance[name]['present'] = present
+			attendance[name]['absent'] = absent
+			attendance[name]['none'] = none
+			attendance[name]['total'] = present+absent+none
 		
 		return render(request, 'student/view_attendance_result.html', {"attendance": attendance, "days": days})
 

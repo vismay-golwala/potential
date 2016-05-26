@@ -73,7 +73,35 @@ a
 	margin-top: 20%;
 	display: none;
 }
-table, td, th
+#view_attendance_result
 {
-	border: 1px solid black;
+	box-shadow: -3px 3px 3px gray;
+	background: white;
+}
+#view_attendance_result td, #view_attendance_result th
+{
+	border: 1px solid #ccc;
+}
+#view_attendance_result th
+{
+	padding: 5px;
+	text-align: center;
+}
+#view_attendance_result td
+{
+	padding: 5px;
+	text-align: center;
+}
+#view_attendance_result .student_name
+{
+	font-weight: 800;
+	font-size: 120%;
+}
+#view_attendance_result .present
+{
+	color: #00b300;
+}
+#view_attendance_result .absent
+{
+	color: #ff0000;
 }

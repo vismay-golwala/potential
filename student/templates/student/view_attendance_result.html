@@ -3,28 +3,29 @@
 		<tr>
 			<th></th>
 			{% for day in days %}
-				<th>{{ day }}</th>
+				<th>{{ day|date:'d' }}</th>
 			{% endfor %}
+			<th>Total - (Present/Absent/&#9866)</th>
 		</tr>
 	</thead>
 	<tbody>
 	{% for key, list in attendance.items %}
 		<tr>
-			<td><b>{{ key }}</b></td>
-			{% for attendance in list %}
-				<td>
-					{% if attendance == "-" %}
-						-
+			<td class="student_name">{{ key }}</td>
+			{% for attendance in list.data %}
+				{% if attendance == "-" %}
+					<td>&#9866</td>
+				{% else %}
+					{% if attendance.attends == "1" %}
+						<td class="present"><span class="glyphicon glyphicon-ok"></span> Present</td>
 					{% else %}
-						{% if attendance.attends == "1" %}
-							Present
-						{% else %}
-							Absent
-						{% endif %}
+						<td class="absent"><span class="glyphicon glyphicon-remove"></span> Absent</td>
 					{% endif %}
-				</td>
+				{% endif %}
 			{% endfor %}
+			<td>{{ list.total }} - ({{ list.present }}/{{ list.absent }}/{{ list.none }})</td>
 		</tr>
 	{% endfor %}
 	</tbody>
 </table>
+{{ count.abc.present }}
