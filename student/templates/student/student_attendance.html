@@ -1,8 +1,9 @@
+
 <form action="student/attendance/" method="POST" name="NameForm">
 	{% for student in all_student %}
 		<div class="col-sm-12">
 			<div class="col-sm-1">
-				{{ student.pk }}
+				{{ forloop.counter }}
 			</div>
 			<div class="col-sm-2">
 				{{ student.name }}

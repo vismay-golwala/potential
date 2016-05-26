@@ -142,22 +142,21 @@ class fee_form_view(View):
                 else:
 			return HttpResponse("Failure")
 
+#test module approach as same as attendance module
 class test_model_form_view(View):
-        form_class = test_model_form
-        template_name = 'student/base_form.html'
+        template_name = 'student/test_model.html'
 
 	def get(self, request):
-		form = self.form_class
-		formset = modelformset_factory(test_model, form=test_model_form, extra=3)
-		return render(request, self.template_name, {"form":form, "formset":formset})
+		all_batch = batch.objects.all()
+		return render(request, self.template_name, {"batch_all":all_batch})
 
 	def post(self,request):
-		form = self.form_class(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/dashboard/')
-                else:
-			return HttpResponse("Failure")
+		pass
 
-
-
+def get_test_students(request):
+	if (request.method == "POST"):
+		batch = request.POST['batch']
+		all_student = student_info.objects.all().filter(batch__batch_id=batch)
+		return render(request, "student/student_test.html", {"all_student":all_student, "batch_id": batch, "index":0})
+	else:
+		return HttpResponse(str(request.method))
