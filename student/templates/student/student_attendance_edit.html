@@ -2,7 +2,7 @@
 	{% for attendance in attendance_all %}
 		<div class="col-sm-12">
 			<div class="col-sm-1">
-				{{ attendance.student.pk }}
+				{{ forloop.counter }}
 			</div>
 			<div class="col-sm-2">
 				{{ attendance.student.name }}

@@ -25,6 +25,7 @@ $(document).ready(function()
                     allowClear: true
                 });
                 $('input[type="date"]').val(new Date().toJSON().slice(0,10));
+                $('input[type="month"]').val(new Date().toJSON().slice(0,7));
         	}
         });
     });

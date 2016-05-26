@@ -83,7 +83,24 @@ class view_attendance(View):
 		return render(request, self.template_name, {"batch_all":batches })
 	
 	def post(self,request):
-		return render(request, self.template_name, {"form":form})
+		batch_id = request.POST.get('batch')
+		attendance_month = request.POST.get('attendance_month')
+		
+		all_students = student_info.objects.all().filter(batch=batch.objects.filter(batch_id=batch_id)).order_by('-name')
+		days = attends.objects.all().filter(attendance_date__contains=attendance_month, batch__batch_id=batch_id).order_by('attendance_date').values_list('attendance_date', flat=True).distinct()
+		
+		attendance = {}
+		for student in all_students:
+			name = student.name
+			attendance[name] = []
+			for day in days:
+				attend_obj = attends.objects.filter(student= student, batch__batch_id = batch_id, attendance_date=day)
+				if attend_obj.exists():
+					attendance[name].append(attends.objects.get(student= student, batch__batch_id = batch_id, attendance_date=day))
+				else:
+					attendance[name].append("-")
+		
+		return render(request, 'student/view_attendance_result.html', {"attendance": attendance, "days": days})
 
 #----STUDENT----
 class student_info_form_view(View):

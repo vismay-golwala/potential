@@ -1,0 +1,30 @@
+<table id="view_attendance_result">
+	<thead>
+		<tr>
+			<th></th>
+			{% for day in days %}
+				<th>{{ day }}</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+	{% for key, list in attendance.items %}
+		<tr>
+			<td><b>{{ key }}</b></td>
+			{% for attendance in list %}
+				<td>
+					{% if attendance == "-" %}
+						-
+					{% else %}
+						{% if attendance.attends == "1" %}
+							Present
+						{% else %}
+							Absent
+						{% endif %}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
