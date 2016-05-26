@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.forms import modelformset_factory
-from .forms import student_info_form, batch_form, standard_form, board_form, fee_form, test_model_form
+from .forms import student_info_form, batch_form, standard_form, board_form, fee_form
 from .models import student_info, batch, attends, test_model
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
@@ -110,6 +110,8 @@ class standard_form_view(View):
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
+		else:
+			return render(request, self.template_name, {"form":form}
 
 class board_form_view(View):
 	form_class = board_form
