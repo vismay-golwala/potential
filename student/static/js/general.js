@@ -23,6 +23,10 @@ $(document).ready(function()
                 ({
                     allowClear: true
                 });
+                if($("#id_date").length>0)
+                {
+                    $("#id_date").attr('type','date');
+                }
         	}
         });
     });

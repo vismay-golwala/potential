@@ -1,18 +1,18 @@
 $(document).ready(function()
 {
-	$(document).on("change","#standard",function()
+	$(document).on("change","#test_batch",function()
 	{
-		var batch = $("#standard").val();
+		var batch = $("#test_batch").val();
 		var csrf_token = $("#csrf_token").find("input").val();
 		$.ajax
 		({
 		// Check for batch id instead of standard
 			type: "POST",
-			url: "student/get_attendance/",
+			url: "student/get_test_students/",
 			data: { batch: batch, csrfmiddlewaretoken: csrf_token },
 			success: function(response)
 			{
-				$("#attendance_table").html(response);
+				$("#test_table").html(response);
 			},
 			error: function()
 			{
