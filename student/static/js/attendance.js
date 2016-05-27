@@ -13,7 +13,11 @@ $(document).ready(function()
 		({
 			type: "POST",
 			url: "student/get_attendance/",
+<<<<<<< HEAD
 			data: { batch: batch, attendance_date: attendance_date, csrfmiddlewaretoken: csrf_token },
+=======
+			data: { batch: batch, csrfmiddlewaretoken: csrf_token },
+>>>>>>> master
 			success: function(response)
 			{
 				$("#attendance_table").hide();

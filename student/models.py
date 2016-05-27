@@ -1,6 +1,11 @@
 from __future__ import unicode_literals
 from django.db import models
+
 import datetime
+
+from smart_selects.db_fields import ChainedForeignKey
+
+
 # Create your models here.
 
 class standard(models.Model):
@@ -25,8 +30,12 @@ class batch (models.Model):
     def save(self, *args, **kwargs):
 
         #TODO: Write code here to handle multiple batches of same standard and board.
+<<<<<<< HEAD
 
         self.batch_id = str(self.batch_std) + '-' + str(self.batch_board)
+=======
+        self.batch_id = str(self.batch_std) + "-" + str(self.batch_board)
+>>>>>>> master
         return super(batch, self).save(*args, **kwargs)
         
         
@@ -48,7 +57,6 @@ class student_info (models.Model):
     def __str__(self):
         return str (self.name) + " (" + str (self.batch) + ")"
 
-
 class attends (models.Model):
 
     student = models.ForeignKey (student_info, on_delete = models.CASCADE)
@@ -66,3 +74,26 @@ class attends (models.Model):
 
         return str (self.student) + " - " + str (attendance)
 
+class fee_installment(models.Model):
+
+    batch = models.ForeignKey (batch, on_delete = models.CASCADE)
+    #Reference: http://stackoverflow.com/a/29460671
+    student  = ChainedForeignKey(student_info, chained_field = "batch", chained_model_field="batch", show_all=False,)
+    #TODO: Implement datepicker in the view
+    date = models.DateField()
+    amount = models.CharField (max_length = 10, default = "")
+
+    def __str__(self):
+        return str(self.student) + " (Rs. " + str(self.amount) + ")"
+
+class test_model (models.Model):
+
+    student = models.ForeignKey (student_info, on_delete = models.CASCADE)
+    batch = models.ForeignKey (batch, on_delete = models.CASCADE)
+    date = models.DateField()
+    topic = models.CharField(max_length = 100, default="")
+    out_of = models.CharField (max_length = 10, default = "0")
+    obtained = models.CharField (max_length = 10, default = "0")
+    
+    def __str__(self):
+        return str(self.student) + " (" + self.obtained + "/" + self.out_of + "-" + self.topic + ")"

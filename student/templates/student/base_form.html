@@ -1,2 +1,8 @@
 {% load crispy_forms_tags %}
 {% crispy form %}
+{% block body %}
+  {% if formset %}
+  	{% crispy formset formset.form.helper %}
+  {% endif %}
+  {% crispy form %}
+{% endblock %}

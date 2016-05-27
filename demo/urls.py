@@ -21,5 +21,6 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^dashboard/', include('student.urls')),
-    url(r'^student/', include('student.urls'))
+    url(r'^student/', include('student.urls')),
+    url(r'^chaining/', include('smart_selects.urls')),
 ]

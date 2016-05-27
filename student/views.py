@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import student_info_form, batch_form, standard_form, board_form
 from .models import student_info, batch, attends, board, standard
+from django.forms import modelformset_factory
+from .forms import student_info_form, batch_form, standard_form, board_form, fee_form
+from .models import student_info, batch, attends, test_model
 from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
@@ -213,6 +216,8 @@ class standard_form_view(View):
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
+		else:
+			return render(request, self.template_name, {"form":form}
 
 class board_form_view(View):
 	form_class = board_form
@@ -227,4 +232,67 @@ class board_form_view(View):
 		form = self.form_class(request.POST)
 		if form.is_valid():
 			form.save()
+<<<<<<< HEAD
 			return HttpResponseRedirect('/dashboard/')
+=======
+			return HttpResponseRedirect('/dashboard/')
+
+
+class fee_form_view(View):
+        form_class = fee_form
+        template_name = 'student/base_form.html'
+
+	def get(self, request):
+		form = self.form_class
+		return render(request, self.template_name, {"form":form})
+
+	def post(self,request):
+		form = self.form_class(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/dashboard/')
+                else:
+			return HttpResponse("Failure")
+
+#test module approach as same as attendance module
+class test_model_form_view(View):
+        template_name = 'student/test_model.html'
+
+	def get(self, request):
+		all_batch = batch.objects.all()
+		return render(request, self.template_name, {"batch_all":all_batch})
+
+	def post(self,request):
+			post = request.POST
+			test_date = post.get('test_date')
+			test_out_of = post.get('test_out_of')
+			test_topic = post.get('test_topic')
+			batch_obj = batch.objects.filter(batch_id=str(post.get('test_batch')))
+			post._mutable = True
+			del post['test_date']
+			del post['test_out_of']
+			del post['test_topic']
+			del post['test_batch']
+			del post['csrfmiddlewaretoken']
+
+			for student_id in post:
+				mark = post[student_id]
+				student_obj = student_info.objects.filter(pk=int(student_id))
+				query = test_model.objects.create(student=student_obj[0],
+												batch=batch_obj[0],
+												date=test_date,
+												topic=test_topic,
+												out_of=test_out_of,
+												obtained=mark)
+				query.save()
+
+			return HttpResponseRedirect('/dashboard/')
+
+def get_test_students(request):
+	if (request.method == "POST"):
+		batch = request.POST['batch']
+		all_student = student_info.objects.all().filter(batch__batch_id=batch)
+		return render(request, "student/student_test.html", {"all_student":all_student, "batch_id": batch, "index":0})
+	else:
+		return HttpResponse(str(request.method))
+>>>>>>> master

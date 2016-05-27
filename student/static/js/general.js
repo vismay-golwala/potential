@@ -29,8 +29,15 @@ $(document).ready(function()
                 ({
                     allowClear: true
                 });
+<<<<<<< HEAD
                 $('input[type="date"]').val(new Date().toJSON().slice(0,10));
                 $('input[type="month"]').val(new Date().toJSON().slice(0,7));
+=======
+                if($("#id_date").length>0)
+                {
+                    $("#id_date").attr('type','date');
+                }
+>>>>>>> master
         	}
         });
     });
