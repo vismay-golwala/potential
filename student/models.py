@@ -30,12 +30,8 @@ class batch (models.Model):
     def save(self, *args, **kwargs):
 
         #TODO: Write code here to handle multiple batches of same standard and board.
-<<<<<<< HEAD
 
-        self.batch_id = str(self.batch_std) + '-' + str(self.batch_board)
-=======
         self.batch_id = str(self.batch_std) + "-" + str(self.batch_board)
->>>>>>> master
         return super(batch, self).save(*args, **kwargs)
         
         

@@ -217,7 +217,7 @@ class standard_form_view(View):
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
 		else:
-			return render(request, self.template_name, {"form":form}
+			return render(request, self.template_name, {"form":form})
 
 class board_form_view(View):
 	form_class = board_form
@@ -232,15 +232,12 @@ class board_form_view(View):
 		form = self.form_class(request.POST)
 		if form.is_valid():
 			form.save()
-<<<<<<< HEAD
-			return HttpResponseRedirect('/dashboard/')
-=======
 			return HttpResponseRedirect('/dashboard/')
 
 
 class fee_form_view(View):
-        form_class = fee_form
-        template_name = 'student/base_form.html'
+	form_class = fee_form
+	template_name = 'student/base_form.html'
 
 	def get(self, request):
 		form = self.form_class
@@ -251,12 +248,12 @@ class fee_form_view(View):
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
-                else:
+		else:
 			return HttpResponse("Failure")
 
 #test module approach as same as attendance module
 class test_model_form_view(View):
-        template_name = 'student/test_model.html'
+	template_name = 'student/test_model.html'
 
 	def get(self, request):
 		all_batch = batch.objects.all()
@@ -295,4 +292,3 @@ def get_test_students(request):
 		return render(request, "student/student_test.html", {"all_student":all_student, "batch_id": batch, "index":0})
 	else:
 		return HttpResponse(str(request.method))
->>>>>>> master
