@@ -19,6 +19,11 @@ $(document).ready(function()
 				$("#attendance_table").hide();
 				$("#attendance_table").html(response);
 				$("#attendance_table").show("slow");
+				$('input').iCheck
+                ({
+                    checkboxClass: 'icheckbox_square-purple',
+                    radioClass: 'iradio_square-purple',
+                });
 			},
 			error: function()
 			{

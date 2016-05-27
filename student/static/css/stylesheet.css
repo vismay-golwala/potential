@@ -2,7 +2,7 @@ body
 {
 	font-size: 17px;
 }
-.pointer, a, input[type=radio]
+.pointer, a, input[type=radio], select
 {
 	cursor: pointer;
 }
@@ -12,6 +12,7 @@ body
 	width: 20px;
 	height: 20px;
 	padding: 10px;
+	color: red;
 }
 input[type=date], input[type=month]
 {
@@ -33,6 +34,15 @@ input[type=date], input[type=month]
 .white
 {
 	color: white;
+}
+.lr0pad
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.bg-white
+{
+	background-color: white; 
 }
 .current_link
 {
@@ -61,6 +71,20 @@ a
 {
 	background: #00c0ef;
 }
+.form-input
+{
+	border-radius: 3px;
+	font-size: 20px;
+}
+hr
+{
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
 #title_div
 {
 	text-align: center;
@@ -72,13 +96,18 @@ a
 	font-size: 200%;
 	margin-right: 8%;
 }
+#edit_full_form input, #edit_full_form select 
+{
+	width: 110%;
+	border-radius: 4px;
+}
 #main_table .full_edit_btn, #main_table .delete_btn
 {
 	margin-top: 10px;
 }
 #main_table #edit_modal_body
 {
-	min-height: 800px;
+	min-height: 600px;
 }
 #main_table .modal-header h4
 {
@@ -96,11 +125,11 @@ a
 }
 #main_table .modal-header .close:hover
 {
-	color: #0da3e2;
+	color: #fff;
 }
 .student_record:hover
 {
-	background: #ffcccc;
+	background: #e6e6ff;
 }
 #loader_div
 {
@@ -206,4 +235,30 @@ a
 #attendance_save
 {
 	margin-top: 9px;
+}
+#all_boards_div
+{
+	border: 2px solid #009900;
+}
+#all_boards_head
+{
+	background: #009900;
+	color: white;
+}
+#all_boards_head p
+{
+	margin-top: 10px;
+}
+#all_boards_div .board_row
+{
+	border-bottom: 1px solid #ccc;
+	min-height: 40px;
+}
+#all_boards_div .board_row:hover
+{
+	background: #e6ffe6;
+}
+#all_boards_div .board_row .board_delete_btn
+{
+	margin-top: 2px;
 }

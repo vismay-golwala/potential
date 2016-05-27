@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import student_info_form, batch_form, standard_form, board_form
-from .models import student_info, batch, attends
+from .models import student_info, batch, attends, board, standard
 from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
@@ -188,7 +188,7 @@ class delete_student(View):
 #----BATCH----
 class batch_form_view(View):
 	form_class = batch_form
-	template_name = 'student/base_form.html'	
+	template_name = 'student/batch.html'	
 	
 	def get(self, request):
 		form = self.form_class
@@ -202,7 +202,7 @@ class batch_form_view(View):
 
 class standard_form_view(View):
 	form_class = standard_form
-	template_name = 'student/base_form.html'	
+	template_name = 'student/standard.html'	
 	
 	def get(self, request):
 		form = self.form_class
@@ -216,11 +216,12 @@ class standard_form_view(View):
 
 class board_form_view(View):
 	form_class = board_form
-	template_name = 'student/base_form.html'	
+	template_name = 'student/board.html'	
 	
 	def get(self, request):
 		form = self.form_class
-		return render(request, self.template_name, {"form":form})
+		board_all = board.objects.all().order_by('board')
+		return render(request, self.template_name, {"form":form, "board_all": board_all})
 
 	def post(self,request):
 		form = self.form_class(request.POST)
