@@ -1,6 +1,6 @@
 #main_table
 {
-	box-shadow: 5px 5px 5px gray;
+	box-shadow: -5px 5px 5px gray;
 	border-left: 1px solid #ccc;
 	border-top: 1px solid #ccc;
 	margin-top: 20px;
@@ -40,4 +40,8 @@ p.data
 .head_cell
 {
 	padding-left: 4%;
+}
+#edit_student_header p
+{
+	font-size: 150%;
 }

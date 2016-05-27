@@ -1,0 +1,54 @@
+<form action="student/attendance/" method="POST" name="NameForm">
+	<div class="col-sm-12" id="attendance_header">
+		<div class="col-sm-1">
+			#
+		</div>
+		<div class="col-sm-3">
+			Name
+		</div>
+		<div class="col-sm-2">
+			Contact
+		</div>
+		<div class="col-sm-2">
+			School
+		</div>
+		<div class="col-sm-4 text-center">
+			Attendance
+		</div>
+	</div>
+	{% for student in student_all %}
+		<div class="col-sm-12 attendance_row">
+			<div class="col-sm-1">
+				{{ forloop.counter }}
+			</div>
+			<div class="col-sm-3">
+				{{ student.name }}
+			</div>
+			<div class="col-sm-2">
+				{{ student.sms_mob }}
+			</div>
+			<div class="col-sm-2">
+				{{ student.school }}
+			</div>
+			<div class="col-sm-4">
+				<div class="col-sm-6">
+					<label class="radio-inline">
+						<input type="radio" class="attendance_radio" name="{{ student.pk }}" value="1" checked> &nbsp;Present
+					</label>
+				</div>
+				<div class="col-sm-6">
+					<label class="radio-inline">
+						<input type="radio" class="attendance_radio" name="{{ student.pk }}" value="0"> &nbsp;Absent
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	{% endfor %}
+	{% csrf_token %}
+	<input type="hidden" name="batch_id" value="{{ batch_id }}"/>
+	<input type="hidden" name="attendance_date" value="{{ attendance_date }}"/>
+	<div class="col-sm-12" id="attendance_save">
+		<button class="btn bg-purple font125">Save</button>
+	</div>
+</form>

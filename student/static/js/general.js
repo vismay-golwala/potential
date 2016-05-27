@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+    $("#loader_div").remove();
     $(".select").select2
     ({
         allowClear: true
@@ -11,6 +12,11 @@ $(document).ready(function()
 
         if(url=="" || url==undefined || url==null)
             return;
+
+        $(".sidebar-menu li a").removeClass("current_link")
+        $(this).addClass("current_link");
+        
+        $("#link_title").text($(this).text());
         $.ajax
         ({
         	type: "GET",
@@ -23,12 +29,21 @@ $(document).ready(function()
                 ({
                     allowClear: true
                 });
+<<<<<<< HEAD
+                $('input[type="date"]').val(new Date().toJSON().slice(0,10));
+                $('input[type="month"]').val(new Date().toJSON().slice(0,7));
+=======
                 if($("#id_date").length>0)
                 {
                     $("#id_date").attr('type','date');
                 }
+>>>>>>> master
         	}
         });
     });
-    $("#attendance_link").trigger('click');
+    setTimeout(function()
+        {
+            $("#attendance_link").parents(".treeview-menu").prev().trigger('click');
+            $("#attendance_link").trigger('click');
+        },100);
 });

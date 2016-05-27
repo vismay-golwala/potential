@@ -1,0 +1,15 @@
+<form action="" method="post" id="edit_full_form">
+	{% csrf_token %}
+    {% for field in form %}
+    <div class="form-group col-sm-12">
+    	<div class="col-sm-2 col-sm-offset-10">
+    		<span class="text-danger small">{{ field.error }}</span>
+    	</div>
+    	<label class="control-label col-sm-3">{{ field.label_tag }}</label>
+    	<div class="col-sm-8">{{ field }}</div>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">
+    	Save
+    </button>
+</form>

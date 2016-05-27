@@ -1,18 +1,21 @@
 from __future__ import unicode_literals
-
 from django.db import models
+
+import datetime
+
 from smart_selects.db_fields import ChainedForeignKey
+
 
 # Create your models here.
 
 class standard(models.Model):
-    standard = models.CharField(max_length = 10, default = "NA")
+    standard = models.CharField(max_length = 10)
 
     def __str__(self):
         return self.standard
 
 class board(models.Model):
-    board = models.CharField(max_length = 10, default = "NA")
+    board = models.CharField(max_length = 10)
 
     def __str__(self):
         return self.board
@@ -27,7 +30,12 @@ class batch (models.Model):
     def save(self, *args, **kwargs):
 
         #TODO: Write code here to handle multiple batches of same standard and board.
+<<<<<<< HEAD
+
+        self.batch_id = str(self.batch_std) + '-' + str(self.batch_board)
+=======
         self.batch_id = str(self.batch_std) + "-" + str(self.batch_board)
+>>>>>>> master
         return super(batch, self).save(*args, **kwargs)
         
         
@@ -52,10 +60,11 @@ class student_info (models.Model):
 class attends (models.Model):
 
     student = models.ForeignKey (student_info, on_delete = models.CASCADE)
-   # batch = models.ForeignKey (batch, on_delete = models.CASCADE)
+    batch = models.ForeignKey (batch, on_delete = models.CASCADE, null=True)
 
     #attends - choice ?
     attends = models.CharField (max_length = 100, default = "NA")
+    attendance_date = models.DateField(default=datetime.datetime.now)
 
     def __str__(self):
         if self.attends == '1':
