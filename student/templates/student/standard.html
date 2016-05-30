@@ -1,4 +1,33 @@
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/manage_batch.js' %}"></script>
 {% load crispy_forms_tags %}
 {% crispy form %}
 <hr/>
-<h2 class="text-center">Manage Standard</h2>
+<center>
+	<h2>Manage Standard</h2>
+	<div class="bg-white col-sm-12 lr0pad" id="all_standards_div">
+		<div class="col-sm-12 lr0pad" id="all_standards_head">
+			<div class="col-sm-1">
+				<p class="h3">#</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h3">Standard</p>
+			</div>
+		</div>
+	{% for standard in standard_all %}
+	<div class="col-sm-12 standard_row lr0pad">
+		<div class="col-sm-1">
+			<p class="h4">{{ forloop.counter }}</p>
+		</div>
+		<div class="col-sm-2">
+			<p class="h4">{{ standard.standard }}</p>
+		</div>
+		<div class="col-sm-2">
+			<button class="btn btn-danger standard_delete_btn" rel="{{ standard.pk }}">
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			</button>
+		</div>
+	</div>
+	{% endfor %}
+	</div>
+</center>

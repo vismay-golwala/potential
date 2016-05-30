@@ -1,9 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import student_info_form, batch_form, standard_form, board_form
-from .models import student_info, batch, attends, board, standard
+from .models import student_info, batch, attends, board, standard, test_model
 from django.forms import modelformset_factory
 from .forms import student_info_form, batch_form, standard_form, board_form, fee_form
-from .models import student_info, batch, attends, test_model
 from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
@@ -195,7 +193,8 @@ class batch_form_view(View):
 	
 	def get(self, request):
 		form = self.form_class
-		return render(request, self.template_name, {"form":form})
+		batch_all = batch.objects.all().order_by('batch_std__standard', 'batch_board__board')
+		return render(request, self.template_name, {"form":form, "batch_all": batch_all})
 
 	def post(self,request):
 		form = self.form_class(request.POST)		
@@ -203,21 +202,42 @@ class batch_form_view(View):
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
 
+class delete_batch(View):
+
+	def get(self, request):
+		pass
+
+	def post(self, request):
+		batch_pk = request.POST.get('batch_pk')
+		b = batch.objects.filter(pk=batch_pk)
+		b.delete()
+		return HttpResponse()
+
 class standard_form_view(View):
 	form_class = standard_form
 	template_name = 'student/standard.html'	
 	
 	def get(self, request):
 		form = self.form_class
-		return render(request, self.template_name, {"form":form})
+		standard_all = standard.objects.extra(select={'standard': 'CAST(standard AS INTEGER)'}).order_by('standard')
+		return render(request, self.template_name, {"form":form, "standard_all": standard_all})
 
 	def post(self,request):
 		form = self.form_class(request.POST)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
-		else:
-			return render(request, self.template_name, {"form":form})
+
+class delete_standard(View):
+
+	def get(self, request):
+		pass
+
+	def post(self, request):
+		standard_pk = request.POST.get('standard_pk')
+		s = standard.objects.filter(pk=standard_pk)
+		s.delete()
+		return HttpResponse()
 
 class board_form_view(View):
 	form_class = board_form
@@ -234,6 +254,16 @@ class board_form_view(View):
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
 
+class delete_board(View):
+
+	def get(self, request):
+		pass
+
+	def post(self, request):
+		board_pk = request.POST.get('board_pk')
+		b = board.objects.filter(pk=board_pk)
+		b.delete()
+		return HttpResponse()
 
 class fee_form_view(View):
 	form_class = fee_form
