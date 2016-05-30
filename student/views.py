@@ -262,6 +262,7 @@ class test_model_form_view(View):
 	def post(self,request):
 			post = request.POST
 			test_date = post.get('test_date')
+			date = datetime.datetime.strptime(test_date, "%Y-%m-%d").date()
 			test_out_of = post.get('test_out_of')
 			test_topic = post.get('test_topic')
 			batch_obj = batch.objects.filter(batch_id=str(post.get('test_batch')))
@@ -277,7 +278,7 @@ class test_model_form_view(View):
 				student_obj = student_info.objects.filter(pk=int(student_id))
 				query = test_model.objects.create(student=student_obj[0],
 												batch=batch_obj[0],
-												date=test_date,
+												date=date,
 												topic=test_topic,
 												out_of=test_out_of,
 												obtained=mark)
