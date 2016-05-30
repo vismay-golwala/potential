@@ -139,3 +139,23 @@ class fee_form(forms.ModelForm):
                 Field('amount', css_class='input-sm'),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
+
+class user_form (forms.ModelForm):
+	password = forms.CharField (widget=forms.PasswordInput)
+
+	class Meta:
+		model = User
+		fields = ['username', 'password']
+
+        helper = FormHelper()
+        helper.form_method = 'POST'
+        #helper.form_action = 'student/login/'
+        helper.form_class = 'form-horizontal'
+        helper.label_class = 'col-sm-2'
+        helper.field_class = 'col-sm-4'
+        helper.disable_csrf = False
+        helper.layout = Layout(
+        Field('username', css_class='input-sm'),
+        Field('password', css_class='input-sm'),
+        FormActions(Submit('Login', 'Login', css_class='btn-primary'))
+    )

@@ -1,13 +1,16 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import student_info_form, batch_form, standard_form, board_form
 from .models import student_info, batch, attends, board, standard
 from django.forms import modelformset_factory
-from .forms import student_info_form, batch_form, standard_form, board_form, fee_form
+from .forms import student_info_form, batch_form, standard_form, board_form, fee_form, user_form
 from .models import student_info, batch, attends, test_model
 from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+
 
 #Migrated from FBVs to CBVs as CBVs handle get and post logic cleanly
 #----DASHBOARD----
@@ -15,10 +18,13 @@ class dashboard(View):
 	template_name = 'student/dashboard.html'	
 	
 	def get(self, request):
-                return render(request, self.template_name)
+		if request.user.is_authenticated():
+			return render(request, self.template_name)
+		else:
+			return HttpResponse("You need to login first")
 	
 	def post(self,request):
-            pass
+		pass
 
 #----ATTENDANCE----
 class attendance(View):
@@ -293,3 +299,29 @@ def get_test_students(request):
 		return render(request, "student/student_test.html", {"all_student":all_student, "batch_id": batch, "index":0})
 	else:
 		return HttpResponse(str(request.method))
+
+
+class login_view(View):
+	form_class = user_form
+	template_name = 'student/base_form.html'
+
+	def get(self, request):
+		form = self.form_class
+		return render(request, self.template_name, {"form":form})
+
+	def post(self,request):
+		form = self.form_class(request.POST)
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username=username, password=password)
+
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				return HttpResponseRedirect('/dashboard/')
+		else:
+			return HttpResponse("Invalid authorization")
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect('https://www.google.com')
