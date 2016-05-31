@@ -1,11 +1,6 @@
 {% load staticfiles %}
 {% if not fees %}
-<script type="text/javascript" src="{% static 'js/manage_fee.js' %}"></script>
-{% load crispy_forms_tags %}
-{% crispy form %}
-<button class="btn bg-orange" id="get_fees_btn">
-		<span class="glyphicon glyphicon-th-list"></span> &nbsp;Fetch
-</button>
+<h3>No fees installments found</h3>
 <hr/>
 {% else %}
 <center>
