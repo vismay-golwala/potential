@@ -31,7 +31,7 @@ $(document).ready(function()
 					},
 					error: function(response)
 					{
-						alert("Oops, some error occured!");
+						alert("Oops, this batch is bounded to some student model; Cannot delete!");
 					}
 				});
 			},
@@ -72,7 +72,7 @@ $(document).ready(function()
 					},
 					error: function(response)
 					{
-						alert("Oops, some error occured!");
+						alert("Oops, this board is bounded to some student model; Cannot delete!");
 					}
 				});
 			},
@@ -113,7 +113,7 @@ $(document).ready(function()
 					},
 					error: function(response)
 					{
-						alert("Oops, some error occured!");
+						alert("Oops, this standard is bounded to some student model; Cannot delete!");
 					}
 				});
 			},
