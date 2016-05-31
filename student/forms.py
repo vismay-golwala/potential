@@ -24,7 +24,7 @@ class student_info_form(forms.ModelForm):
         helper.disable_csrf = False
         helper.layout = Layout(
 		Field('name', css_class='form-input', placeholder='Enter name'),
-		Field('batch', css_class='form-input'),
+		Field('batch', css_class='form-input',data_placeholder='Select Batch'),
 		Field('school', css_class='form-input', placeholder='Enter school'),		
 		Field('father_name', css_class='form-input', placeholder='Enter father\'s name'),
 		Field('father_mob', css_class='form-input', placeholder='Enter father\'s mobile'),
@@ -131,10 +131,10 @@ class fee_form(forms.ModelForm):
         helper.field_class = 'col-sm-4'
         helper.disable_csrf = False
         helper.layout = Layout(
-		Field('batch', css_class='input-sm'),
-                Field('student', css_class='input-sm'),
+		Field('batch', css_class='input-sm',data_placeholder='Select Batch'),
+                Field('student', css_class='input-sm',data_placeholder='Select Student'),
                 Field('date', css_class='input-sm', type='date'),
-                Field('amount', css_class='input-sm'),
+                Field('amount', css_class='input-sm form-input', placeholder="Amount"),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
 
@@ -161,18 +161,17 @@ class user_form (forms.ModelForm):
 	password = forms.CharField (widget=forms.PasswordInput)
 
 	class Meta:
-		model = User
-		fields = ['username', 'password']
-
-        helper = FormHelper()
-        helper.form_method = 'POST'
-        #helper.form_action = 'student/login/'
-        helper.form_class = 'form-horizontal'
-        helper.label_class = 'col-sm-2'
-        helper.field_class = 'col-sm-4'
-        helper.disable_csrf = False
-        helper.layout = Layout(
-        Field('username', css_class='input-sm'),
-        Field('password', css_class='input-sm'),
-        FormActions(Submit('Login', 'Login', css_class='btn-primary'))
+            model = User
+            fields = ['username', 'password']
+            helper = FormHelper()
+            helper.form_method = 'POST'
+            #helper.form_action = 'student/login/'
+            helper.form_class = 'form-horizontal'
+            helper.label_class = 'col-sm-2'
+            helper.field_class = 'col-sm-4'
+            helper.disable_csrf = False
+            helper.layout = Layout(
+            Field('username', css_class='input-sm'),
+            Field('password', css_class='input-sm'),
+            FormActions(Submit('Login', 'Login', css_class='btn-primary'))
     )

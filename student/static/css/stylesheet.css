@@ -90,6 +90,7 @@ hr
 	margin: 1em 0;
 	padding: 0;
 }
+
 #title_div
 {
 	text-align: center;
@@ -100,6 +101,20 @@ hr
 	color: white;
 	font-size: 200%;
 	margin-right: 8%;
+}
+#logout_link
+{
+	margin-right: 2%;
+}
+#logout_link .logout_text
+{
+	font-size: 140%;
+}
+#logout_link a
+{
+	color: white;
+	font-size: 130%;
+	vertical-align: middle;
 }
 #edit_full_form input, #edit_full_form select 
 {

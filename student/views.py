@@ -315,7 +315,7 @@ class fee_form_view(LoginRequiredMixin, View):
 	redirect_field_name = '/dashboard'
 
 	form_class = fee_form
-	template_name = 'student/base_form.html'
+	template_name = 'student/fee_installment.html'
 
 	def get(self, request):
 		form = self.form_class
@@ -334,7 +334,7 @@ class fee_installment_form_view(LoginRequiredMixin, View):
 	redirect_field_name = '/dashboard'
 
 	form_class = fee_installment_form
-	template_name = 'student/fee_installment.html'
+	template_name = 'student/view_fee_installments.html'
 
 	def get(self, request):
 		# form = self.form_class
@@ -404,8 +404,7 @@ class login_view(View):
 	template_name = 'student/base_form.html'
 
 	def get(self, request):
-		form = self.form_class
-		return render(request, self.template_name, {"form":form})
+		return render(request, 'student/login.html')
 
 	def post(self,request):
 		form = self.form_class(request.POST)
