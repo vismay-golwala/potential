@@ -6,20 +6,28 @@ from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 #Migrated from FBVs to CBVs as CBVs handle get and post logic cleanly
 #----DASHBOARD----
-class dashboard(View):
+class dashboard(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
 	template_name = 'student/dashboard.html'	
 	
 	def get(self, request):
-                return render(request, self.template_name)
+			return render(request, self.template_name)
 	
 	def post(self,request):
-            pass
+		pass
 
 #----ATTENDANCE----
-class attendance(View):
+class attendance(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
 	template_name = 'student/attendance.html'	
 	
 	def get(self, request):
@@ -56,7 +64,9 @@ class attendance(View):
                     #form.save()
                     # return HttpResponseRedirect('/success/')
 
-class get_attendance(View):
+class get_attendance(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
 
 	def get(self, request):
 		return HttpResponse(str(request.method))
@@ -76,7 +86,9 @@ class get_attendance(View):
 			student_all = student_info.objects.all().filter(batch__batch_id=batch)
 			return render(request, "student/student_attendance_insert.html", {"student_all": student_all, "batch_id": batch, "attendance_date": attendance_date})		
 
-class view_attendance(View):
+class view_attendance(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
 	template_name = 'student/view_attendance.html'	
 	
 	def get(self, request):
@@ -119,7 +131,10 @@ class view_attendance(View):
 		return render(request, 'student/view_attendance_result.html', {"attendance": attendance, "days": days})
 
 #----STUDENT----
-class student_info_form_view(View):
+class student_info_form_view(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
 	form_class = student_info_form
 	template_name = 'student/base_form.html'	
 	
@@ -140,7 +155,9 @@ class student_info_form_view(View):
 			return HttpResponseRedirect('/dashboard/')
 		return render(request, self.template_name, {"form":form})
 
-class edit_student(View):
+class edit_student(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
 	template_name = 'student/edit_student.html'
 
 	def get(self,request):
@@ -151,8 +168,10 @@ class edit_student(View):
 	def post(self,request):
 		pass
 
-class update_cell(View):
-	
+class update_cell(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
 	def get(self, request):
 		pass
 
@@ -167,7 +186,10 @@ class update_cell(View):
 		student_info.objects.filter(pk=row).update(**args)
 		return HttpResponse()
 
-class edit_full_student(UpdateView):
+class edit_full_student(LoginRequiredMixin, UpdateView):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
 	model = student_info
 	fields = ['name','batch','father_name','father_mob','mother_name','mother_mob','sms_mob','school','total_fees']
 	template_name = 'student/edit_full_student.html'
@@ -175,7 +197,9 @@ class edit_full_student(UpdateView):
 	def get_success_url(self):
 		return '/dashboard/'
 
-class delete_student(View):
+class delete_student(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
 
 	def get(self, request):
 		pass
@@ -187,7 +211,10 @@ class delete_student(View):
 		return HttpResponse()
 
 #----BATCH----
-class batch_form_view(View):
+class batch_form_view(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
 	form_class = batch_form
 	template_name = 'student/batch.html'	
 	
@@ -202,6 +229,12 @@ class batch_form_view(View):
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
 
+<<<<<<< HEAD
+class standard_form_view(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
+=======
 class delete_batch(View):
 
 	def get(self, request):
@@ -214,6 +247,7 @@ class delete_batch(View):
 		return HttpResponse()
 
 class standard_form_view(View):
+>>>>>>> master
 	form_class = standard_form
 	template_name = 'student/standard.html'	
 	
@@ -239,7 +273,10 @@ class delete_standard(View):
 		s.delete()
 		return HttpResponse()
 
-class board_form_view(View):
+class board_form_view(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
 	form_class = board_form
 	template_name = 'student/board.html'	
 	
@@ -265,7 +302,10 @@ class delete_board(View):
 		b.delete()
 		return HttpResponse()
 
-class fee_form_view(View):
+class fee_form_view(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
 	form_class = fee_form
 	template_name = 'student/base_form.html'
 
@@ -282,7 +322,10 @@ class fee_form_view(View):
 			return HttpResponse("Failure")
 
 #test module approach as same as attendance module
-class test_model_form_view(View):
+class test_model_form_view(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
 	template_name = 'student/test_model.html'
 
 	def get(self, request):
@@ -323,3 +366,29 @@ def get_test_students(request):
 		return render(request, "student/student_test.html", {"all_student":all_student, "batch_id": batch, "index":0})
 	else:
 		return HttpResponse(str(request.method))
+
+
+class login_view(View):
+	form_class = user_form
+	template_name = 'student/base_form.html'
+
+	def get(self, request):
+		form = self.form_class
+		return render(request, self.template_name, {"form":form})
+
+	def post(self,request):
+		form = self.form_class(request.POST)
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username=username, password=password)
+
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				return HttpResponseRedirect('/dashboard/')
+		else:
+			return HttpResponse("Invalid authorization")
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect('https://www.google.com')
