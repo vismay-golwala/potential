@@ -1,0 +1,52 @@
+{% load staticfiles %}
+{% if not fees %}
+<script type="text/javascript" src="{% static 'js/manage_fee.js' %}"></script>
+{% load crispy_forms_tags %}
+{% crispy form %}
+<button class="btn bg-orange" id="get_fees_btn">
+		<span class="glyphicon glyphicon-th-list"></span> &nbsp;Fetch
+</button>
+<hr/>
+{% else %}
+<center>
+	<h2>Fees Installments</h2>
+	<div class="bg-white col-sm-12 lr0pad" id="all_batches_div">
+		<div class="col-sm-12 lr0pad" id="all_batches_head">
+			<div class="col-sm-1">
+				<p class="h3">#</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h3">Name</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h3">date</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h3">Amount</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h3">Total fees</p>
+			</div>
+		</div>
+	{% for fee in fees %}
+	<div class="col-sm-12 batch_row lr0pad">
+		<div class="col-sm-1">
+			<p class="h4">{{ forloop.counter }}</p>
+		</div>
+		<div class="col-sm-2">
+			<p class="h4">{{ fee.student }}</p>
+		</div>
+		<div class="col-sm-2">
+			<p class="h4">{{ fee.date }}</p>
+		</div>
+		<div class="col-sm-2">
+			<p class="h4">{{ fee.amount }}</p>
+		</div>
+		<div class="col-sm-2">
+			<p class="h4">{{ fee.student.total_fees }}</p>
+		</div>
+	</div>
+	{% endfor %}
+	</div>
+</center>
+{% endif %}
