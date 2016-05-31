@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import student_info, batch, attends, board, standard, test_model
+from .models import student_info, batch, attends, board, standard, test_model, fee_installment
 from django.forms import modelformset_factory
-from .forms import student_info_form, batch_form, standard_form, board_form, fee_form, user_form
+from .forms import student_info_form, batch_form, standard_form, board_form, fee_form, user_form, fee_installment_form
 from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
@@ -320,6 +320,29 @@ class fee_form_view(LoginRequiredMixin, View):
 			return HttpResponseRedirect('/dashboard/')
 		else:
 			return HttpResponse("Failure")
+
+class fee_installment_form_view(LoginRequiredMixin, View):
+	login_url = '/student/login/'
+	redirect_field_name = '/dashboard'
+
+	form_class = fee_installment_form
+	template_name = 'student/fee_installment.html'
+
+	def get(self, request):
+		# form = self.form_class
+		# return render(request, self.template_name, {"form":form})
+		fees = fee_installment.objects.all()
+		return render(request, self.template_name, {"fees":fees})
+
+	def post(self,request):
+		form = self.form_class(request.POST)
+		# fees per student logic
+		# batch = request.POST['batch']
+		# student = student_info.objects.get(pk=request.POST['student'])
+		# fees = fee_installment.objects.all().filter(student=student)
+		# return render(request, self.template_name, {"fees":fees})
+		fees = fee_installment.objects.all()
+		return render(request, self.template_name, {"fees":fees})
 
 #test module approach as same as attendance module
 class test_model_form_view(LoginRequiredMixin, View):

@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^test_model/$', views.test_model_form_view.as_view(), name='test'),
     url(r'^get_test_students/$',  views.get_test_students, name='get_test_students'),
     url(r'^login/$',  views.login_view.as_view(), name='login_view'),
-    url(r'^logout/$',  views.logout_user, name='logout_user')
+    url(r'^logout/$',  views.logout_user, name='logout_user'),
+    url(r'^view_fees/$',  views.fee_installment_form_view.as_view(), name='fee_installment_form_view')
 ]

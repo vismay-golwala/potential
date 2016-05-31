@@ -134,6 +134,25 @@ class fee_form(forms.ModelForm):
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
 
+class fee_installment_form(forms.ModelForm):
+
+        class Meta:
+                model = fee_installment
+                fields = ['batch','student']
+
+        helper = FormHelper()
+        helper.form_method = 'POST'
+        helper.form_action = 'student/view_fees/'
+        helper.form_class = 'form-horizontal'
+        helper.label_class = 'col-sm-2'
+        helper.field_class = 'col-sm-4'
+        helper.disable_csrf = False
+        helper.layout = Layout(
+        Field('batch', css_class='input-sm'),
+                Field('student', css_class='input-sm'),
+        FormActions(Submit('View', 'View', css_class='btn-primary'))
+    )
+
 class user_form (forms.ModelForm):
 	password = forms.CharField (widget=forms.PasswordInput)
 
