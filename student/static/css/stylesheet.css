@@ -236,29 +236,29 @@ hr
 {
 	margin-top: 9px;
 }
-#all_boards_div
+#all_boards_div, #all_batches_div, #all_standards_div
 {
-	border: 2px solid #009900;
+	border: 2px solid #0d9cd9;
 }
-#all_boards_head
+#all_boards_head, #all_batches_head, #all_standards_head
 {
-	background: #009900;
+	background: #0d9cd9;
 	color: white;
 }
-#all_boards_head p
+#all_boards_head p, #all_batches_head p, #all_standards_head p
 {
 	margin-top: 10px;
 }
-#all_boards_div .board_row
+#all_boards_div .board_row, #all_batches_div .batch_row, #all_standards_div .standard_row
 {
 	border-bottom: 1px solid #ccc;
 	min-height: 40px;
 }
-#all_boards_div .board_row:hover
+#all_boards_div .board_row:hover, #all_batches_div .batch_row:hover, #all_standards_div .standard_row:hover
 {
-	background: #e6ffe6;
+	background-color: rgba(183, 230, 251, 0.3);
 }
-#all_boards_div .board_row .board_delete_btn
+#all_boards_div .board_row .board_delete_btn, #all_batches_div .batch_row .batch_delete_btn, #all_standards_div .standard_row .standard_delete_btn
 {
 	margin-top: 2px;
 }

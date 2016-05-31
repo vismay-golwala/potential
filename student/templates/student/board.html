@@ -1,4 +1,5 @@
-<script type="text/javascript" src="js/manage_batch.js"></script>
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/manage_batch.js' %}"></script>
 {% load crispy_forms_tags %}
 {% crispy form %}
 <hr/>
@@ -22,8 +23,8 @@
 			<p class="h4">{{ board }}</p>
 		</div>
 		<div class="col-sm-2">
-			<button class="btn btn-danger board_delete_btn">
-				<span class="glyphicon glyphicon-minus"></span>
+			<button class="btn btn-danger board_delete_btn" rel="{{ board.pk }}">
+				<span class="glyphicon glyphicon-trash"></span> Remove
 			</button>
 		</div>
 	</div>
