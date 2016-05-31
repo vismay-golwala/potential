@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import student_info, batch, attends, board, standard, test_model
 from django.forms import modelformset_factory
-from .forms import student_info_form, batch_form, standard_form, board_form, fee_form
+from .forms import student_info_form, batch_form, standard_form, board_form, fee_form, user_form
 from django.views.generic import View
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
@@ -229,12 +229,12 @@ class batch_form_view(LoginRequiredMixin, View):
 			form.save()
 			return HttpResponseRedirect('/dashboard/')
 
-<<<<<<< HEAD
+
 class standard_form_view(LoginRequiredMixin, View):
 	login_url = '/student/login/'
 	redirect_field_name = '/dashboard'
 
-=======
+
 class delete_batch(View):
 
 	def get(self, request):
@@ -247,7 +247,7 @@ class delete_batch(View):
 		return HttpResponse()
 
 class standard_form_view(View):
->>>>>>> master
+
 	form_class = standard_form
 	template_name = 'student/standard.html'	
 	

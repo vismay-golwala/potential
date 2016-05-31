@@ -94,12 +94,6 @@ class standard_form(forms.ModelForm):
 		Field('standard', css_class='form-input', placeholder='Enter Standard'),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
-        def clean_standard(self):
-            std = self.cleaned_data['standard']
-
-            if not std.isdigit():
-                raise forms.ValidationError("Standard must be integer")
-            return std
 
 class board_form(forms.ModelForm):
 
