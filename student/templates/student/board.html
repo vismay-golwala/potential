@@ -14,20 +14,40 @@
 				<p class="h3">Board</p>
 			</div>
 		</div>
-	{% for board in board_all %}
-	<div class="col-sm-12 board_row lr0pad">
-		<div class="col-sm-1">
-			<p class="h4">{{ forloop.counter }}</p>
+	{% if board_all %}
+		{% for board in board_all %}
+		<div class="col-sm-12 board_row lr0pad">
+			<div class="col-sm-1">
+				<p class="h4">{{ forloop.counter }}</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h4">{{ board }}</p>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-danger board_delete_btn" rel="{{ board.pk }}">
+					<span class="glyphicon glyphicon-trash"></span> Remove
+				</button>
+			</div>
 		</div>
-		<div class="col-sm-2">
-			<p class="h4">{{ board }}</p>
-		</div>
-		<div class="col-sm-2">
-			<button class="btn btn-danger board_delete_btn" rel="{{ board.pk }}">
-				<span class="glyphicon glyphicon-trash"></span> Remove
-			</button>
-		</div>
-	</div>
-	{% endfor %}
+		{% endfor %}
+	{% else %}
+		<h3 style="margin-top: 5%;">No boards found.</h3>
+	{% endif %}
 	</div>
 </center>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$("#board_form").validate(
+		{
+			rules:
+			{
+				board: "required",
+			},
+			messages:
+			{
+				board: "Board is required",
+			}
+		});
+	});
+</script>

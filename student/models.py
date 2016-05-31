@@ -39,7 +39,7 @@ class batch (models.Model):
 class student_info (models.Model):
     
     name = models.CharField (max_length = 100)
-    batch = models.ForeignKey (batch, on_delete = models.SET_DEFAULT, default = "NA")
+    batch = models.ForeignKey (batch, on_delete = models.SET_DEFAULT, default = "1")
     father_name = models.CharField (max_length = 100)  
     father_mob = models.CharField (max_length = 15)
     mother_name = models.CharField (max_length = 100)

@@ -20,6 +20,7 @@ class student_info_form(forms.ModelForm):
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'
+        helper.attrs = { 'id': 'add_student_form'}
         helper.disable_csrf = False
         helper.layout = Layout(
 		Field('name', css_class='form-input', placeholder='Enter name'),
@@ -69,12 +70,13 @@ class batch_form(forms.ModelForm):
         helper.form_method = 'POST'
         helper.form_action = 'student/batch/'
         helper.form_class = 'form-horizontal'
+        helper.attrs = { 'id': 'batch_form'}
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'
         helper.disable_csrf = False
         helper.layout = Layout(
-		Field('batch_std', css_class='form-input'),
-		Field('batch_board', css_class='form-input'),
+		Field('batch_std', css_class='form-input',data_placeholder='Select Standard'),
+		Field('batch_board', css_class='form-input',data_placeholder='Select Board'),
 		FormActions(Submit('Save', 'Save', css_class='btn-primary'))
     )
 
@@ -86,6 +88,7 @@ class standard_form(forms.ModelForm):
         helper = FormHelper()
         helper.form_method = 'POST'
         helper.form_action = 'student/standard/'
+        helper.attrs = { 'id': 'standard_form'}
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'
@@ -109,6 +112,7 @@ class board_form(forms.ModelForm):
         helper = FormHelper()
         helper.form_method = 'POST'
         helper.form_action = 'student/board/'
+        helper.attrs = { 'id': 'board_form'}
         helper.form_class = 'form-horizontal'
         helper.label_class = 'col-sm-2'
         helper.field_class = 'col-sm-4'

@@ -17,23 +17,50 @@
 				<p class="h3">Board</p>
 			</div>
 		</div>
-	{% for batch in batch_all %}
-	<div class="col-sm-12 batch_row lr0pad">
-		<div class="col-sm-1">
-			<p class="h4">{{ forloop.counter }}</p>
+	{% if batch_all %}
+		{% for batch in batch_all %}
+		<div class="col-sm-12 batch_row lr0pad">
+			<div class="col-sm-1">
+				<p class="h4">{{ forloop.counter }}</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h4">{{ batch.batch_std }}</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h4">{{ batch.batch_board }}</p>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-danger batch_delete_btn" rel="{{ batch.pk }}">
+					<span class="glyphicon glyphicon-trash"></span> Remove
+				</button>
+			</div>
 		</div>
-		<div class="col-sm-2">
-			<p class="h4">{{ batch.batch_std }}</p>
-		</div>
-		<div class="col-sm-2">
-			<p class="h4">{{ batch.batch_board }}</p>
-		</div>
-		<div class="col-sm-2">
-			<button class="btn btn-danger batch_delete_btn" rel="{{ batch.pk }}">
-				<span class="glyphicon glyphicon-trash"></span> Remove
-			</button>
-		</div>
-	</div>
-	{% endfor %}
+		{% endfor %}
+	{% else %}
+		<h3 style="margin-top: 5%;">No batches found.</h3>
+	{% endif %}
+
 	</div>
 </center>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$("#batch_form").validate(
+		{
+			rules:
+			{
+				batch_std: "required",
+				batch_board: "required",
+			},
+			messages:
+			{
+				batch_std: "Standard is required",
+				batch_board: "Board is required",
+			}
+		});
+		$("#id_batch_std, #id_batch_board").change(function()
+		{
+			$(".error").trigger('click');
+		});
+	});
+</script>

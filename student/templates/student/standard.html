@@ -14,20 +14,40 @@
 				<p class="h3">Standard</p>
 			</div>
 		</div>
-	{% for standard in standard_all %}
-	<div class="col-sm-12 standard_row lr0pad">
-		<div class="col-sm-1">
-			<p class="h4">{{ forloop.counter }}</p>
+	{% if standard_all %}
+		{% for standard in standard_all %}
+		<div class="col-sm-12 standard_row lr0pad">
+			<div class="col-sm-1">
+				<p class="h4">{{ forloop.counter }}</p>
+			</div>
+			<div class="col-sm-2">
+				<p class="h4">{{ standard.standard }}</p>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-danger standard_delete_btn" rel="{{ standard.pk }}">
+					<span class="glyphicon glyphicon-trash"></span> Remove
+				</button>
+			</div>
 		</div>
-		<div class="col-sm-2">
-			<p class="h4">{{ standard.standard }}</p>
-		</div>
-		<div class="col-sm-2">
-			<button class="btn btn-danger standard_delete_btn" rel="{{ standard.pk }}">
-				<span class="glyphicon glyphicon-trash"></span> Remove
-			</button>
-		</div>
-	</div>
-	{% endfor %}
+		{% endfor %}
+	{% else %}
+		<h3 style="margin-top: 5%;">No standards found.</h3>
+	{% endif %}
 	</div>
 </center>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$("#standard_form").validate(
+		{
+			rules:
+			{
+				standard: "required",
+			},
+			messages:
+			{
+				standard: "Standard is required",
+			}
+		});
+	});
+</script>

@@ -69,7 +69,7 @@ class get_attendance(View):
 		attendance = attends.objects.filter(attendance_date = date, batch__batch_id=batch)
 
 		# column__field is used when using foreign key, we want to access column of another table
-		# In this example, we are accessing batch_id of batch object which is a foreign key
+		# In this example, we are accessing 'batch_id' of 'batch' object which is a foreign key
 		if attendance.exists():
 			return render(request, "student/student_attendance_edit.html", {"attendance_all": attendance, "batch_id": batch, "attendance_date": attendance_date})
 		else:
@@ -86,7 +86,7 @@ class view_attendance(View):
 	def post(self,request):
 		batch_id = request.POST.get('batch')
 		attendance_month = request.POST.get('attendance_month')
-		
+		# column__contains is used when we need 'Like' functionality of sql
 		all_students = student_info.objects.all().filter(batch=batch.objects.filter(batch_id=batch_id)).order_by('-name')
 		days = attends.objects.all().filter(attendance_date__contains=attendance_month, batch__batch_id=batch_id).order_by('attendance_date').values_list('attendance_date', flat=True).distinct()
 		
@@ -121,7 +121,7 @@ class view_attendance(View):
 #----STUDENT----
 class student_info_form_view(View):
 	form_class = student_info_form
-	template_name = 'student/base_form.html'	
+	template_name = 'student/add_student.html'	
 	
 	def get(self, request):
 		form = self.form_class
@@ -144,12 +144,20 @@ class edit_student(View):
 	template_name = 'student/edit_student.html'
 
 	def get(self,request):
-		students = student_info.objects.all()
 		batches = batch.objects.all()
-		return render(request, self.template_name, {'students': students, 'batches': batches})
+		return render(request, self.template_name, {'batches': batches})
 
 	def post(self,request):
-		pass
+		batch_pk = request.POST.get('batch')
+		name = request.POST.get('name')
+
+		if batch_pk == "":
+			students = student_info.objects.filter(name__contains=name).order_by('batch__batch_id','name')
+		else:
+			students = student_info.objects.filter(name__contains=name, batch__pk=batch_pk ).order_by('name')
+		
+		batches = batch.objects.all()
+		return render(request, 'student/student_records.html', {'students': students, 'batches': batches})
 
 class update_cell(View):
 	

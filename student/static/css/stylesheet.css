@@ -48,6 +48,11 @@ input[type=date], input[type=month]
 {
 	color: white !important;
 }
+label.error
+{
+	color: #ff0000;
+	font-weight: 400;
+}
 a
 {
 	text-decoration: none !important;
@@ -105,14 +110,23 @@ hr
 {
 	margin-top: 10px;
 }
+#edit_modal .modal-header
+{
+	background: #00a65a;
+	border: 0px;
+}
 #main_table #edit_modal_body
 {
 	min-height: 600px;
+	overflow-y: auto;
+	border: 3px solid #00a65a;
+	border-top: 0px;
 }
 #main_table .modal-header h4
 {
 	font-weight: 600;
 	font-size: 200%;
+	color: white;
 }
 #main_table .modal-header .close
 {
@@ -127,9 +141,23 @@ hr
 {
 	color: #fff;
 }
+#edit_modal_body input
+{
+	border: 1px solid #aaa;
+	padding: 2px 5px;
+}
+#edit_modal_body input:focus
+{
+	outline: 1px solid #0da3e2;
+}
+.student_record
+{
+	border-bottom: 1px solid #ccc;
+	margin-top: 3px;
+}
 .student_record:hover
 {
-	background: #e6e6ff;
+	background: rgba(255, 230, 230,0.35);
 }
 #loader_div
 {
