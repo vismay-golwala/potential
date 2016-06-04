@@ -261,7 +261,7 @@ class standard_form_view(View):
 	
 	def get(self, request):
 		form = self.form_class
-		standard_all = standard.objects.extra(select={'standard': 'CAST(standard AS INTEGER)'}).order_by('standard')
+		standard_all = standard.objects.all()
 		return render(request, self.template_name, {"form":form, "standard_all": standard_all})
 
 	def post(self,request):
