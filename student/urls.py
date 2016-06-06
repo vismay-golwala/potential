@@ -5,6 +5,7 @@ app_name = 'student'
 # URL: student/
 urlpatterns = [
     url(r'^$', views.dashboard.as_view(), name='dashboard'),
+    url(r'^set_session_link/$', views.set_session_link.as_view(), name='set_session_link'),
     url(r'^attendance/$', views.attendance.as_view(), name='attendance'),
     url(r'^get_attendance/$', views.get_attendance.as_view(), name='get_attendance'),
     url(r'^view_attendance/$', views.view_attendance.as_view(), name='view_attendance'),

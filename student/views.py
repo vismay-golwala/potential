@@ -24,6 +24,15 @@ class dashboard(LoginRequiredMixin, View):
 	def post(self,request):
 		pass
 
+class set_session_link(LoginRequiredMixin, View):
+
+	def get(self, request):
+		pass
+
+	def post(self, request):
+		request.session['return_link'] = request.POST.get('link')
+		return HttpResponse()
+
 #----ATTENDANCE----
 class attendance(LoginRequiredMixin, View):
 	login_url = '/student/login/'

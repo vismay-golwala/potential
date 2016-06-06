@@ -174,21 +174,14 @@ hr
 {
 	background: rgba(255, 230, 230,0.35);
 }
-#loader_div
+#loader_div .close
 {
-	position: absolute;
-	left: 17.2%;
-	top: 8%;
-	height: 85%;
-	width: 100%;
-	z-index: 100;
 	display: none;
 }
 #loader_div img
 {
-	margin-left: 39%;
+	margin-left: 50%;
 	margin-top: 20%;
-	display: none;
 }
 #view_attendance_result
 {
