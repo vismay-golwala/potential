@@ -421,4 +421,4 @@ class login_view(View):
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('https://www.google.com')
+    return HttpResponseRedirect('/student/login/')
