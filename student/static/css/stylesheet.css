@@ -81,6 +81,11 @@ a
 	border-radius: 3px;
 	font-size: 20px;
 }
+input[type=text]
+{
+	height: 42px;
+	border-radius: 5px;
+}
 hr
 {
 	display: block;
@@ -181,7 +186,8 @@ hr
 #loader_div img
 {
 	margin-left: 50%;
-	margin-top: 20%;
+	margin-top: 18%;
+	height: 18%;
 }
 #view_attendance_result
 {
